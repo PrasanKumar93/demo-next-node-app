@@ -25,8 +25,13 @@ backend/
 │   │   └── index.ts                  # Shared TypeScript types/interfaces
 │   │
 │   ├── utils/
-│   │   ├── db.ts                     # MongoDB connection + CRUD utilities
-│   │   ├── db.test.ts                # Co-located test file
+│   │   ├── mongodb/
+│   │   │   ├── connect.ts            # MongoDB connection utilities
+│   │   │   ├── create.ts             # Create operations
+│   │   │   ├── read.ts               # Read operations
+│   │   │   ├── update.ts             # Update operations
+│   │   │   ├── delete.ts             # Delete operations
+│   │   │   └── index.ts              # Re-exports all functions
 │   │   └── response.ts               # Standard response helpers
 │   │
 │   ├── app.ts                        # Express app configuration
@@ -78,7 +83,13 @@ TypeScript type definitions, interfaces, and enums shared across the application
 
 Utility functions including:
 
-- `db.ts` - MongoDB connection singleton + generic CRUD operations with Zod validation
+- `mongodb/` - MongoDB connection and CRUD operations with Zod validation
+  - `connect.ts` - Connection singleton (connectDB, getDB, closeDB, isConnected)
+  - `create.ts` - Create operations (createOne)
+  - `read.ts` - Read operations (findOne, findMany, countDocuments)
+  - `update.ts` - Update operations (updateOne)
+  - `delete.ts` - Delete operations (deleteOne, deleteMany)
+  - `index.ts` - Re-exports all functions
 - `response.ts` - Standard API response formatting
 
 ---
@@ -92,9 +103,9 @@ src/
 ├── controllers/
 │   ├── hello.controller.ts       # Source
 │   └── hello.controller.test.ts  # Test
-├── utils/
-│   ├── db.ts                     # Source
-│   └── db.test.ts                # Test
+├── schemas/
+│   ├── index.ts                  # Source
+│   └── index.test.ts             # Test
 ```
 
 **Benefits:**
@@ -121,23 +132,30 @@ src/
 
 ---
 
-## MongoDB Utilities Structure (`src/utils/db.ts`)
+## MongoDB Utilities Structure (`src/utils/mongodb/`)
 
 ```typescript
-// Connection
+// connect.ts - Connection utilities
 export const connectDB: () => Promise<Db>;
 export const getDB: () => Db;
+export const getCollection: <T>(name: string) => Collection<T>;
 export const closeDB: () => Promise<void>;
+export const isConnected: () => boolean;
 
-// CRUD Operations (with Zod validation)
+// create.ts
 export const createOne: <T>(collection, data, schema) => Promise<T>;
+
+// read.ts
 export const findOne: <T>(collection, query, schema) => Promise<T | null>;
-export const findMany: <T>(collection, query, schema) => Promise<T[]>;
-export const updateOne: <T>(
-  collection,
-  query,
-  data,
-  schema
-) => Promise<T | null>;
-export const deleteOne: (collection, query) => Promise<boolean>;
+export const findMany: <T>(collection, query, schema, options?) => Promise<T[]>;
+export const countDocuments: <T>(collection, query?) => Promise<number>;
+
+// update.ts
+export const updateOne: <T>(collection, query, data, schema) => Promise<T | null>;
+
+// delete.ts
+export const deleteOne: <T>(collection, query) => Promise<boolean>;
+export const deleteMany: <T>(collection, query) => Promise<number>;
+
+// index.ts - Re-exports all above functions
 ```

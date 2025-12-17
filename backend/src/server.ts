@@ -1,6 +1,6 @@
 import app from "./app.js";
 import { ENV } from "./config/env.js";
-import { connectDB, closeDB } from "./utils/db.js";
+import { connectDB, closeDB } from "./utils/mongodb/index.js";
 
 async function startServer(): Promise<void> {
   try {

@@ -43,7 +43,10 @@ export function sendCreated<T>(res: Response, data: T, message?: string): void {
 /**
  * Send a not found response (404)
  */
-export function sendNotFound(res: Response, message = "Resource not found"): void {
+export function sendNotFound(
+  res: Response,
+  message = "Resource not found"
+): void {
   sendError(res, message, 404);
 }
 
@@ -57,7 +60,9 @@ export function sendBadRequest(res: Response, message = "Bad request"): void {
 /**
  * Send an unauthorized response (401)
  */
-export function sendUnauthorized(res: Response, message = "Unauthorized"): void {
+export function sendUnauthorized(
+  res: Response,
+  message = "Unauthorized"
+): void {
   sendError(res, message, 401);
 }
-

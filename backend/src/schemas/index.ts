@@ -17,4 +17,3 @@ export const MongoDocumentSchema = z.object({
 });
 
 export type MongoDocument = z.infer<typeof MongoDocumentSchema>;
-

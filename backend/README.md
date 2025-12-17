@@ -57,6 +57,7 @@ GET /api/hello
 ```
 
 Response:
+
 ```json
 {
   "success": true,
@@ -73,6 +74,7 @@ GET /api/health
 ```
 
 Response:
+
 ```json
 {
   "success": true,
@@ -106,8 +108,13 @@ backend/
 │   ├── types/
 │   │   └── index.ts
 │   ├── utils/
-│   │   ├── db.ts               # MongoDB CRUD utilities
-│   │   ├── db.test.ts
+│   │   ├── mongodb/
+│   │   │   ├── connect.ts      # MongoDB connection utilities
+│   │   │   ├── create.ts       # Create operations
+│   │   │   ├── read.ts         # Read operations
+│   │   │   ├── update.ts       # Update operations
+│   │   │   ├── delete.ts       # Delete operations
+│   │   │   └── index.ts        # Re-exports all functions
 │   │   ├── response.ts
 │   │   └── response.test.ts
 │   ├── app.ts
@@ -120,24 +127,30 @@ backend/
 
 ## Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Start development server with hot reload |
-| `npm run build` | Compile TypeScript to JavaScript |
-| `npm start` | Run production build |
-| `npm test` | Run tests in watch mode |
-| `npm run test:run` | Run tests once |
-| `npm run test:coverage` | Run tests with coverage report |
-| `npm run lint` | Run ESLint |
-| `npm run lint:fix` | Fix ESLint errors |
+| Script                  | Description                              |
+| ----------------------- | ---------------------------------------- |
+| `npm run dev`           | Start development server with hot reload |
+| `npm run build`         | Compile TypeScript to JavaScript         |
+| `npm start`             | Run production build                     |
+| `npm test`              | Run tests in watch mode                  |
+| `npm run test:run`      | Run tests once                           |
+| `npm run test:coverage` | Run tests with coverage report           |
+| `npm run lint`          | Run ESLint                               |
+| `npm run lint:fix`      | Fix ESLint errors                        |
 
 ## MongoDB CRUD Utilities
 
-The `src/utils/db.ts` provides generic CRUD operations with Zod validation:
+The `src/utils/mongodb/` folder provides modular CRUD operations with Zod validation:
 
 ```typescript
 import { z } from "zod";
-import { createOne, findOne, findMany, updateOne, deleteOne } from "./utils/db.js";
+import {
+  createOne,
+  findOne,
+  findMany,
+  updateOne,
+  deleteOne,
+} from "./utils/mongodb/index.js";
 
 // Define schema
 const UserSchema = z.object({
@@ -147,7 +160,11 @@ const UserSchema = z.object({
 });
 
 // Create
-const user = await createOne("users", { name: "John", email: "john@example.com" }, UserSchema);
+const user = await createOne(
+  "users",
+  { name: "John", email: "john@example.com" },
+  UserSchema
+);
 
 // Find one
 const found = await findOne("users", { email: "john@example.com" }, UserSchema);
@@ -156,7 +173,12 @@ const found = await findOne("users", { email: "john@example.com" }, UserSchema);
 const users = await findMany("users", {}, UserSchema, { limit: 10 });
 
 // Update
-const updated = await updateOne("users", { email: "john@example.com" }, { name: "Jane" }, UserSchema);
+const updated = await updateOne(
+  "users",
+  { email: "john@example.com" },
+  { name: "Jane" },
+  UserSchema
+);
 
 // Delete
 const deleted = await deleteOne("users", { email: "john@example.com" });
@@ -164,12 +186,12 @@ const deleted = await deleteOne("users", { email: "john@example.com" });
 
 ## Environment Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `PORT` | `3000` | Server port |
-| `NODE_ENV` | `development` | Environment |
-| `MONGODB_URI` | `mongodb://localhost:27017/demo_app` | MongoDB connection string |
-| `MONGODB_DB_NAME` | `demo_app` | Database name |
+| Variable          | Default                              | Description               |
+| ----------------- | ------------------------------------ | ------------------------- |
+| `PORT`            | `3000`                               | Server port               |
+| `NODE_ENV`        | `development`                        | Environment               |
+| `MONGODB_URI`     | `mongodb://localhost:27017/demo_app` | MongoDB connection string |
+| `MONGODB_DB_NAME` | `demo_app`                           | Database name             |
 
 ## Testing
 
@@ -189,4 +211,3 @@ npm run test:coverage
 ## License
 
 ISC
-

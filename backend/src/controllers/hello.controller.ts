@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
 import { sendSuccess } from "../utils/response.js";
-import { isConnected } from "../utils/db.js";
+import { isConnected } from "../utils/mongodb/index.js";
 import type { HelloResponse, HealthCheckResponse } from "../types/index.js";
 
 /**
