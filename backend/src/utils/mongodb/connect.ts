@@ -60,4 +60,3 @@ export async function closeDB(): Promise<void> {
 export function isConnected(): boolean {
   return db !== null;
 }
-
