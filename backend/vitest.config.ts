@@ -13,6 +13,10 @@ export default defineConfig({
     },
     testTimeout: 10000,
     hookTimeout: 10000,
+    // Load .env.test for test environment
+    env: {
+      NODE_ENV: "test",
+    },
+    setupFiles: ["./src/test-setup.ts"],
   },
 });
-

@@ -9,7 +9,8 @@ export const ENV = {
   NODE_ENV: process.env.NODE_ENV || "development",
 
   // MongoDB
-  MONGODB_URI: process.env.MONGODB_URI || "mongodb://localhost:27017/demo_app",
+  MONGODB_URI:
+    process.env.MONGODB_URI || "mongodb://localhost:27017/demoNextNodeDb",
   MONGODB_DB_NAME: process.env.MONGODB_DB_NAME || "demo_app",
 
   // Derived
@@ -19,4 +20,3 @@ export const ENV = {
 } as const;
 
 export type Env = typeof ENV;
-
