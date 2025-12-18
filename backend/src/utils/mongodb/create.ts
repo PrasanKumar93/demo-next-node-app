@@ -9,11 +9,11 @@ import { getCollection } from "./connect.js";
 /**
  * Create a document with Zod validation
  */
-export async function createOne<T extends Document>(
+const createOne = async <T extends Document>(
   collectionName: string,
   data: OptionalUnlessRequiredId<T>,
   schema: ZodSchema<T>
-): Promise<MongoWithId<T>> {
+): Promise<MongoWithId<T>> => {
   // Validate input data
   const validated = schema.parse(data);
 
@@ -23,4 +23,6 @@ export async function createOne<T extends Document>(
   );
 
   return { ...validated, _id: result.insertedId } as MongoWithId<T>;
-}
+};
+
+export { createOne };

@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 
 // Standard API Response
-export interface ApiResponse<T = unknown> {
+interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
   message?: string;
@@ -9,19 +9,19 @@ export interface ApiResponse<T = unknown> {
 }
 
 // Express middleware type
-export type AsyncHandler = (
+type AsyncHandler = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => Promise<void>;
 
 // MongoDB document with _id
-export interface WithId {
+interface WithId {
   _id?: string;
 }
 
 // Health check response
-export interface HealthCheckResponse {
+interface HealthCheckResponse {
   status: "ok" | "error";
   timestamp: string;
   uptime: number;
@@ -29,7 +29,14 @@ export interface HealthCheckResponse {
 }
 
 // Hello response
-export interface HelloResponse {
+interface HelloResponse {
   message: string;
 }
 
+export {
+  ApiResponse,
+  AsyncHandler,
+  WithId,
+  HealthCheckResponse,
+  HelloResponse,
+};

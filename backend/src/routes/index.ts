@@ -6,12 +6,14 @@ const router = Router();
 
 /**
  * Route handler wrapper with try-catch
- * Calls the controller function and sends success/error response
+ * Reads POST body and passes as input to controller function
  */
-function handleRoute<T>(controllerFn: (req: Request) => T | Promise<T>) {
+const handleRoute = <TInput, TOutput>(
+  controllerFn: (input: TInput) => TOutput | Promise<TOutput>
+) => {
   return async (req: Request, res: Response): Promise<void> => {
     try {
-      const result = await controllerFn(req);
+      const result = await controllerFn(req.body as TInput);
       sendSuccess(res, result);
     } catch (error) {
       const message =
@@ -19,18 +21,12 @@ function handleRoute<T>(controllerFn: (req: Request) => T | Promise<T>) {
       sendError(res, message);
     }
   };
-}
+};
 
-// GET /api/hello
-router.get(
-  "/hello",
-  handleRoute(() => getHello())
-);
+// POST /api/hello
+router.post("/hello", handleRoute(getHello));
 
-// GET /api/health
-router.get(
-  "/health",
-  handleRoute(() => getHealth())
-);
+// POST /api/health
+router.post("/health", handleRoute(getHealth));
 
 export default router;

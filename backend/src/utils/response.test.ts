@@ -10,13 +10,13 @@ import {
 } from "./response.js";
 
 // Mock Express Response
-function createMockResponse(): Response {
+const createMockResponse = (): Response => {
   const res = {
     status: vi.fn().mockReturnThis(),
     json: vi.fn().mockReturnThis(),
   } as unknown as Response;
   return res;
-}
+};
 
 describe("Response Utils", () => {
   describe("sendSuccess", () => {
@@ -139,4 +139,3 @@ describe("Response Utils", () => {
     });
   });
 });
-

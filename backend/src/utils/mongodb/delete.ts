@@ -4,24 +4,25 @@ import { getCollection } from "./connect.js";
 /**
  * Delete one document
  */
-export async function deleteOne<T extends Document>(
+const deleteOne = async <T extends Document>(
   collectionName: string,
   query: Filter<T>
-): Promise<boolean> {
+): Promise<boolean> => {
   const collection = getCollection<T>(collectionName);
   const result = await collection.deleteOne(query);
   return result.deletedCount === 1;
-}
+};
 
 /**
  * Delete many documents
  */
-export async function deleteMany<T extends Document>(
+const deleteMany = async <T extends Document>(
   collectionName: string,
   query: Filter<T>
-): Promise<number> {
+): Promise<number> => {
   const collection = getCollection<T>(collectionName);
   const result = await collection.deleteMany(query);
   return result.deletedCount;
-}
+};
 
+export { deleteOne, deleteMany };

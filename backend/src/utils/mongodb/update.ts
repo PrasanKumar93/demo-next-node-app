@@ -5,12 +5,12 @@ import { getCollection } from "./connect.js";
 /**
  * Update one document with Zod validation
  */
-export async function updateOne<T extends Document>(
+const updateOne = async <T extends Document>(
   collectionName: string,
   query: Filter<T>,
   update: UpdateFilter<T> | Partial<T>,
   schema: ZodSchema<T>
-): Promise<MongoWithId<T> | null> {
+): Promise<MongoWithId<T> | null> => {
   const collection = getCollection<T>(collectionName);
 
   // Determine if it's an update operator or replacement
@@ -29,5 +29,6 @@ export async function updateOne<T extends Document>(
   // Validate output data
   const validated = schema.parse(result);
   return validated as MongoWithId<T>;
-}
+};
 
+export { updateOne };

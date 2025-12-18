@@ -5,7 +5,7 @@ dotenv.config();
 
 const CURR_NODE_ENV = process.env.NODE_ENV || "development";
 
-export const ENV = {
+const ENV = {
   // Server
   PORT: parseInt(process.env.PORT || "3000", 10),
   NODE_ENV: CURR_NODE_ENV,
@@ -21,4 +21,6 @@ export const ENV = {
   IS_TEST: CURR_NODE_ENV === "test",
 } as const;
 
-export type Env = typeof ENV;
+type Env = typeof ENV;
+
+export { ENV, Env };

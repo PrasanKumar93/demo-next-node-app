@@ -5,7 +5,7 @@ import { sendError } from "../utils/response.js";
 /**
  * Custom error class for API errors
  */
-export class ApiError extends Error {
+class ApiError extends Error {
   constructor(public statusCode: number, message: string) {
     super(message);
     this.name = "ApiError";
@@ -15,7 +15,7 @@ export class ApiError extends Error {
 /**
  * Global error handling middleware
  */
-export const errorHandler = (
+const errorHandler = (
   err: Error,
   _req: Request,
   res: Response,
@@ -35,6 +35,8 @@ export const errorHandler = (
 /**
  * 404 Not Found handler
  */
-export const notFoundHandler = (_req: Request, res: Response): void => {
+const notFoundHandler = (_req: Request, res: Response): void => {
   sendError(res, "Route not found", 404);
 };
+
+export { ApiError, errorHandler, notFoundHandler };

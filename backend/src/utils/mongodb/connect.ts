@@ -8,7 +8,7 @@ let db: Db | null = null;
 /**
  * Connect to MongoDB
  */
-export async function connectDB(): Promise<Db> {
+const connectDB = async (): Promise<Db> => {
   if (db) {
     return db;
   }
@@ -23,40 +23,42 @@ export async function connectDB(): Promise<Db> {
     console.error("❌ MongoDB connection error:", error);
     throw error;
   }
-}
+};
 
 /**
  * Get database instance (must call connectDB first)
  */
-export function getDB(): Db {
+const getDB = (): Db => {
   if (!db) {
     throw new Error("Database not connected. Call connectDB() first.");
   }
   return db;
-}
+};
 
 /**
  * Get a typed collection
  */
-export function getCollection<T extends Document>(name: string): Collection<T> {
+const getCollection = <T extends Document>(name: string): Collection<T> => {
   return getDB().collection<T>(name);
-}
+};
 
 /**
  * Close MongoDB connection
  */
-export async function closeDB(): Promise<void> {
+const closeDB = async (): Promise<void> => {
   if (client) {
     await client.close();
     client = null;
     db = null;
     console.log("🔌 MongoDB connection closed");
   }
-}
+};
 
 /**
  * Check if connected to MongoDB
  */
-export function isConnected(): boolean {
+const isConnected = (): boolean => {
   return db !== null;
-}
+};
+
+export { connectDB, getDB, getCollection, closeDB, isConnected };

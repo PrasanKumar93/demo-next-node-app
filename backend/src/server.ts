@@ -2,7 +2,7 @@ import app from "./app.js";
 import { ENV } from "./config/env.js";
 import { connectDB, closeDB } from "./utils/mongodb/index.js";
 
-async function startServer(): Promise<void> {
+const startServer = async (): Promise<void> => {
   try {
     // Connect to MongoDB (optional - won't fail if MongoDB is not running)
     try {
@@ -41,6 +41,6 @@ async function startServer(): Promise<void> {
     console.error("Failed to start server:", error);
     process.exit(1);
   }
-}
+};
 
 startServer();

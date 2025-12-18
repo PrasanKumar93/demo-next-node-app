@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 // Example: User schema for demonstration
-export const UserSchema = z.object({
+const UserSchema = z.object({
   _id: z.any().optional(),
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email format"),
@@ -9,11 +9,13 @@ export const UserSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type User = z.infer<typeof UserSchema>;
+type User = z.infer<typeof UserSchema>;
 
 // Generic MongoDB document schema
-export const MongoDocumentSchema = z.object({
+const MongoDocumentSchema = z.object({
   _id: z.any().optional(),
 });
 
-export type MongoDocument = z.infer<typeof MongoDocumentSchema>;
+type MongoDocument = z.infer<typeof MongoDocumentSchema>;
+
+export { UserSchema, User, MongoDocumentSchema, MongoDocument };
