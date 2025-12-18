@@ -14,9 +14,11 @@ const updateOne = async <T extends Document>(
   const collection = getCollection<T>(collectionName);
 
   // Determine if it's an update operator or replacement
-  const updateDoc = Object.keys(update).some((key) => key.startsWith("$"))
+  const updateDoc: UpdateFilter<T> = Object.keys(update).some((key) =>
+    key.startsWith("$")
+  )
     ? (update as UpdateFilter<T>)
-    : { $set: update };
+    : { $set: update as Partial<T> };
 
   const result = await collection.findOneAndUpdate(query, updateDoc, {
     returnDocument: "after",

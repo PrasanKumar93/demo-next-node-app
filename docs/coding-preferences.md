@@ -7,3 +7,5 @@
   - Real Execution: All tests must call the actual implementation of functions and dependencies.
 
   - Environment: Treat unit tests as functional integration tests. Since tests run against a dedicated database and target configuration, side effects are permitted.
+
+- No Emojis in messages while generating code

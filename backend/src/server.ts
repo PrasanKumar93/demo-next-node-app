@@ -8,7 +8,7 @@ const startServer = async (): Promise<void> => {
     try {
       await connectDB();
     } catch (error) {
-      console.warn("⚠️  MongoDB not connected. Running without database.");
+      console.warn("MongoDB not connected. Running without database.");
       console.warn(error);
     }
 

@@ -17,10 +17,10 @@ const connectDB = async (): Promise<Db> => {
     client = new MongoClient(ENV.MONGODB_URI);
     await client.connect();
     db = client.db(ENV.MONGODB_DB_NAME);
-    console.log(`✅ Connected to MongoDB: ${ENV.MONGODB_DB_NAME}`);
+    console.log(`Connected to MongoDB: ${ENV.MONGODB_DB_NAME}`);
     return db;
   } catch (error) {
-    console.error("❌ MongoDB connection error:", error);
+    console.error("MongoDB connection error:", error);
     throw error;
   }
 };
@@ -50,7 +50,7 @@ const closeDB = async (): Promise<void> => {
     await client.close();
     client = null;
     db = null;
-    console.log("🔌 MongoDB connection closed");
+    console.log("MongoDB connection closed");
   }
 };
 
