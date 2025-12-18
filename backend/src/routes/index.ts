@@ -1,6 +1,6 @@
 import { Router, type Request, type Response } from "express";
 import { getHello, getHealth } from "../controllers/hello.controller.js";
-import { sendSuccess, sendError } from "../utils/response.js";
+import type { ApiResponse } from "../types/index.js";
 
 const router = Router();
 
@@ -14,11 +14,19 @@ const handleRoute = <TInput, TOutput>(
   return async (req: Request, res: Response): Promise<void> => {
     try {
       const result = await controllerFn(req.body as TInput);
-      sendSuccess(res, result);
+      const response: ApiResponse<TOutput> = {
+        success: true,
+        data: result,
+      };
+      res.status(200).json(response);
     } catch (error) {
       const message =
         error instanceof Error ? error.message : "An error occurred";
-      sendError(res, message);
+      const response: ApiResponse = {
+        success: false,
+        error: message,
+      };
+      res.status(500).json(response);
     }
   };
 };

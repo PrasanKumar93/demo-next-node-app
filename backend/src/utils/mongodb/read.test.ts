@@ -170,16 +170,19 @@ describe("MongoDB Read Utilities", () => {
     });
 
     it("should count documents matching query", async () => {
-      const count = await countDocuments(TEST_COLLECTION, { age: { $gte: 30 } });
+      const count = await countDocuments(TEST_COLLECTION, {
+        age: { $gte: 30 },
+      });
 
       expect(count).toBe(2);
     });
 
     it("should return 0 for no matches", async () => {
-      const count = await countDocuments(TEST_COLLECTION, { name: "NonExistent" });
+      const count = await countDocuments(TEST_COLLECTION, {
+        name: "NonExistent",
+      });
 
       expect(count).toBe(0);
     });
   });
 });
-

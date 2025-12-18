@@ -37,7 +37,11 @@ describe("MongoDB Create Utilities", () => {
     it("should create a document successfully", async () => {
       const data = { name: "John Doe", email: "john@example.com" };
 
-      const result = await createOne<TestDoc>(TEST_COLLECTION, data, TestDocSchema);
+      const result = await createOne<TestDoc>(
+        TEST_COLLECTION,
+        data,
+        TestDocSchema
+      );
 
       expect(result).toBeDefined();
       expect(result._id).toBeDefined();
@@ -48,7 +52,11 @@ describe("MongoDB Create Utilities", () => {
     it("should create document with optional fields", async () => {
       const data = { name: "Jane Doe", email: "jane@example.com", age: 25 };
 
-      const result = await createOne<TestDoc>(TEST_COLLECTION, data, TestDocSchema);
+      const result = await createOne<TestDoc>(
+        TEST_COLLECTION,
+        data,
+        TestDocSchema
+      );
 
       expect(result.age).toBe(25);
     });
@@ -56,7 +64,11 @@ describe("MongoDB Create Utilities", () => {
     it("should persist document to database", async () => {
       const data = { name: "Persist Test", email: "persist@example.com" };
 
-      const created = await createOne<TestDoc>(TEST_COLLECTION, data, TestDocSchema);
+      const created = await createOne<TestDoc>(
+        TEST_COLLECTION,
+        data,
+        TestDocSchema
+      );
 
       // Verify it's in the database
       const collection = getCollection(TEST_COLLECTION);
@@ -83,4 +95,3 @@ describe("MongoDB Create Utilities", () => {
     });
   });
 });
-

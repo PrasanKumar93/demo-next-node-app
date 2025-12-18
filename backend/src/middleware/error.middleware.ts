@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import { ENV } from "../config/env.js";
-import { sendError } from "../utils/response.js";
+import type { ApiResponse } from "../types/index.js";
 
 /**
  * Custom error class for API errors
@@ -29,14 +29,22 @@ const errorHandler = (
   });
 
   const message = ENV.IS_PRODUCTION ? "Internal server error" : err.message;
-  sendError(res, message, statusCode);
+  const response: ApiResponse = {
+    success: false,
+    error: message,
+  };
+  res.status(statusCode).json(response);
 };
 
 /**
  * 404 Not Found handler
  */
 const notFoundHandler = (_req: Request, res: Response): void => {
-  sendError(res, "Route not found", 404);
+  const response: ApiResponse = {
+    success: false,
+    error: "Route not found",
+  };
+  res.status(404).json(response);
 };
 
 export { ApiError, errorHandler, notFoundHandler };
