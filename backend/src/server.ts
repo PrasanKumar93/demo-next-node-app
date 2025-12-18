@@ -9,19 +9,19 @@ async function startServer(): Promise<void> {
       await connectDB();
     } catch (error) {
       console.warn("⚠️  MongoDB not connected. Running without database.");
-      console.warn("   Start MongoDB or set MONGODB_URI to enable database features.");
+      console.warn(error);
     }
 
     // Start HTTP server
     const server = app.listen(ENV.PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${ENV.PORT}`);
-      console.log(`📝 Environment: ${ENV.NODE_ENV}`);
+      console.log(`Server running on http://localhost:${ENV.PORT}`);
+      console.log(`Environment: ${ENV.NODE_ENV}`);
     });
 
     // Graceful shutdown
     const shutdown = async (signal: string) => {
       console.log(`\n${signal} received. Shutting down gracefully...`);
-      
+
       server.close(async () => {
         console.log("HTTP server closed.");
         await closeDB();
@@ -37,12 +37,10 @@ async function startServer(): Promise<void> {
 
     process.on("SIGTERM", () => shutdown("SIGTERM"));
     process.on("SIGINT", () => shutdown("SIGINT"));
-
   } catch (error) {
-    console.error("❌ Failed to start server:", error);
+    console.error("Failed to start server:", error);
     process.exit(1);
   }
 }
 
 startServer();
-

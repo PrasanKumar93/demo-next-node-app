@@ -1,7 +1,10 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import { errorHandler, notFoundHandler } from "./middleware/error.middleware.js";
+import {
+  errorHandler,
+  notFoundHandler,
+} from "./middleware/error.middleware.js";
 import routes from "./routes/index.js";
 
 // Create Express app
@@ -25,4 +28,3 @@ app.use(notFoundHandler);
 app.use(errorHandler);
 
 export default app;
-

@@ -1,16 +1,12 @@
 import type { Request, Response, NextFunction } from "express";
-import { ZodError } from "zod";
 import { ENV } from "../config/env.js";
-import { sendError, sendBadRequest } from "../utils/response.js";
+import { sendError } from "../utils/response.js";
 
 /**
  * Custom error class for API errors
  */
 export class ApiError extends Error {
-  constructor(
-    public statusCode: number,
-    message: string
-  ) {
+  constructor(public statusCode: number, message: string) {
     super(message);
     this.name = "ApiError";
   }
@@ -19,55 +15,26 @@ export class ApiError extends Error {
 /**
  * Global error handling middleware
  */
-export function errorHandler(
+export const errorHandler = (
   err: Error,
   _req: Request,
   res: Response,
   _next: NextFunction
-): void {
-  console.error("Error:", err);
+): void => {
+  const statusCode = err instanceof ApiError ? err.statusCode : 500;
 
-  // Handle Zod validation errors
-  if (err instanceof ZodError) {
-    const message = err.errors
-      .map((e) => `${e.path.join(".")}: ${e.message}`)
-      .join(", ");
-    sendBadRequest(res, `Validation error: ${message}`);
-    return;
-  }
+  console.error(`[ERROR] ${err.name}: ${err.message}`, {
+    stack: err.stack,
+    statusCode,
+  });
 
-  // Handle custom API errors
-  if (err instanceof ApiError) {
-    sendError(res, err.message, err.statusCode);
-    return;
-  }
-
-  // Handle MongoDB errors
-  if (err.name === "MongoError" || err.name === "MongoServerError") {
-    sendError(res, "Database error occurred", 500);
-    return;
-  }
-
-  // Default error response
   const message = ENV.IS_PRODUCTION ? "Internal server error" : err.message;
-  sendError(res, message, 500);
-}
+  sendError(res, message, statusCode);
+};
 
 /**
  * 404 Not Found handler
  */
-export function notFoundHandler(_req: Request, res: Response): void {
+export const notFoundHandler = (_req: Request, res: Response): void => {
   sendError(res, "Route not found", 404);
-}
-
-/**
- * Async handler wrapper to catch errors in async route handlers
- */
-export function asyncHandler(
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<void>
-) {
-  return (req: Request, res: Response, next: NextFunction): void => {
-    Promise.resolve(fn(req, res, next)).catch(next);
-  };
-}
-
+};
