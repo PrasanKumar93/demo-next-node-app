@@ -1,6 +1,6 @@
 import { Router, type Request, type Response } from "express";
 import { getHello, getHealth } from "../controllers/hello.js";
-import { createStudent } from "../controllers/student.js";
+import { createStudent } from "../controllers/create-student.js";
 import { getAllStudents } from "../controllers/get-all-students.js";
 import type { ApiResponse } from "../types/index.js";
 
