@@ -1,5 +1,6 @@
 import { Router, type Request, type Response } from "express";
 import { getHello, getHealth } from "../controllers/hello.controller.js";
+import { createStudent } from "../controllers/student.controller.js";
 import type { ApiResponse } from "../types/index.js";
 
 const router = Router();
@@ -36,5 +37,8 @@ router.post("/hello", handleRoute(getHello));
 
 // POST /api/health
 router.post("/health", handleRoute(getHealth));
+
+// POST /api/createStudent
+router.post("/createStudent", handleRoute(createStudent));
 
 export default router;
