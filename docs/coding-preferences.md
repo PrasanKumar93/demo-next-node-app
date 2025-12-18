@@ -9,3 +9,5 @@
   - Environment: Treat unit tests as functional integration tests. Since tests run against a dedicated database and target configuration, side effects are permitted.
 
 - No Emojis in messages while generating code
+
+- file naming conventions as small letters separated by hyphen

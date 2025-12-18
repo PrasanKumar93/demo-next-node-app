@@ -25,3 +25,4 @@ const getHealth = (_input: unknown): HealthCheckResponse => {
 };
 
 export { getHello, getHealth };
+

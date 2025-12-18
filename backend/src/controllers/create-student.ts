@@ -33,3 +33,4 @@ const createStudent = async (
 };
 
 export { createStudent, CreateStudentInput };
+
