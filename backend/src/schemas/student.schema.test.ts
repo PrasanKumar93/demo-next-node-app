@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { StudentSchema } from "./index.js";
+import { StudentSchema } from "./student.schema.js";
 
 describe("Zod Schemas", () => {
   describe("StudentSchema", () => {
