@@ -27,6 +27,11 @@
     border-radius: $radius-lg;
     overflow: hidden;
 
+    // Remove extra padding MUI adds for end adornment
+    &:global(.MuiInputBase-adornedEnd) {
+      padding-right: $spacing-1; // Reduce from MUI default 14px
+    }
+
     :global(.MuiOutlinedInput-notchedOutline) {
       border-color: var(--color-grey-300);
     }
@@ -77,10 +82,12 @@
     }
   }
 
-  // Calendar icon button
+  // Calendar icon button - sized to match input height
   :global(.MuiInputAdornment-root) {
     :global(.MuiIconButton-root) {
       color: var(--color-text-secondary);
+      padding: $spacing-1; // Minimal padding to match input height
+      margin-right: $spacing-1;
 
       &:hover {
         background-color: var(--color-grey-100);
@@ -88,6 +95,19 @@
 
       &:disabled {
         color: var(--color-text-disabled);
+      }
+    }
+  }
+
+  // Small size variant - adjust icon button
+  :global(.MuiInputBase-sizeSmall) {
+    :global(.MuiInputAdornment-root) {
+      :global(.MuiIconButton-root) {
+        padding: 2px; // Even smaller padding for small size
+
+        :global(.MuiSvgIcon-root) {
+          font-size: 1rem; // 16px icon for small variant
+        }
       }
     }
   }

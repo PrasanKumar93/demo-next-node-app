@@ -47,8 +47,8 @@ const DatePicker = ({
     const maxDateValue = maxDate ? dayjs(maxDate) : undefined;
 
     const handleChange = (newValue: Dayjs | null) => {
-        // Convert back to ISO string or null
-        const isoValue = newValue ? newValue.toISOString() : null;
+        // Convert back to ISO string or null, only if valid
+        const isoValue = newValue && newValue.isValid() ? newValue.toISOString() : null;
         onChange(name, isoValue);
     };
 
