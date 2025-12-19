@@ -1,33 +1,70 @@
 // ===========================================
-// COLOR VARIABLES
+// MATERIAL DESIGN 3 COLOR SYSTEM
+// Theme: Deep Teal + Terracotta
 // ===========================================
 
-// Primary
-$color-primary: #2563eb;
-$color-primary-dark: #1d4ed8;
-$color-primary-light: #3b82f6;
+// -----------------------------------------
+// PRIMARY - Teal
+// -----------------------------------------
+$color-primary-50: #e0f7f7;
+$color-primary-100: #b3ebeb;
+$color-primary-200: #80dede;
+$color-primary-300: #4dd1d1;
+$color-primary-400: #26c6c6;
+$color-primary-500: #00bbbb;
+$color-primary-600: #00a8a8;
+$color-primary-700: #009090;
+$color-primary-800: #006a6a; // Main primary
+$color-primary-900: #004f4f;
+$color-primary-950: #002d2d;
 
-// Secondary
-$color-secondary: #64748b;
-$color-secondary-dark: #475569;
-$color-secondary-light: #94a3b8;
+// -----------------------------------------
+// SECONDARY - Terracotta/Amber
+// -----------------------------------------
+$color-secondary-50: #fff3e0;
+$color-secondary-100: #ffe0b2;
+$color-secondary-200: #ffcc80;
+$color-secondary-300: #ffb74d;
+$color-secondary-400: #ffa726;
+$color-secondary-500: #ff9800;
+$color-secondary-600: #fb8c00;
+$color-secondary-700: #e88a3c;
+$color-secondary-800: #ba5d07; // Main secondary
+$color-secondary-900: #8a4400;
+$color-secondary-950: #4a2500;
 
-// Status
-$color-success: #22c55e;
-$color-warning: #f59e0b;
-$color-error: #ef4444;
-$color-info: #0ea5e9;
+// -----------------------------------------
+// TERTIARY - Slate Blue
+// -----------------------------------------
+$color-tertiary-50: #eceff1;
+$color-tertiary-100: #cfd8dc;
+$color-tertiary-200: #b0bec5;
+$color-tertiary-300: #90a4ae;
+$color-tertiary-400: #78909c;
+$color-tertiary-500: #607d8b;
+$color-tertiary-600: #546e7a;
+$color-tertiary-700: #455a64;
+$color-tertiary-800: #37474f;
+$color-tertiary-900: #263238;
+$color-tertiary-950: #151c1f;
 
-// Neutrals
+// -----------------------------------------
+// STATUS COLORS
+// -----------------------------------------
+// Error
+$color-error: #d32f2f; // Main error color
+
+// Success
+$color-success: #388e3c; // Main success color
+
+// Warning
+$color-warning: #f57c00; // Main warning color
+
+// Info
+$color-info: #1976d2; // Main info color
+
+// -----------------------------------------
+// BASE COLORS
+// -----------------------------------------
 $color-white: #ffffff;
 $color-black: #000000;
-$color-gray-50: #f8fafc;
-$color-gray-100: #f1f5f9;
-$color-gray-200: #e2e8f0;
-$color-gray-300: #cbd5e1;
-$color-gray-400: #94a3b8;
-$color-gray-500: #64748b;
-$color-gray-600: #475569;
-$color-gray-700: #334155;
-$color-gray-800: #1e293b;
-$color-gray-900: #0f172a;
