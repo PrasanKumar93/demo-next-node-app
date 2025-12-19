@@ -55,6 +55,8 @@
   // Input text
   :global(.MuiOutlinedInput-input) {
     color: var(--color-text-primary);
+    padding: $spacing-3 $spacing-3; // 12px vertical & horizontal
+    height: auto;
 
     &::placeholder {
       color: var(--color-text-disabled);
@@ -64,6 +66,14 @@
     &:disabled {
       color: var(--color-text-disabled);
       -webkit-text-fill-color: var(--color-text-disabled);
+    }
+  }
+
+  // Small size variant
+  :global(.MuiInputBase-sizeSmall) {
+    :global(.MuiOutlinedInput-input) {
+      padding: $spacing-2 $spacing-3; // 8px vertical, 12px horizontal
+      font-size: 0.875rem; // 14px
     }
   }
 

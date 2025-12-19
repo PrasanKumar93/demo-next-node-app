@@ -55,10 +55,25 @@
   // Select value text
   :global(.MuiSelect-select) {
     color: var(--color-text-primary);
+    padding: $spacing-3 $spacing-3; // 12px vertical & horizontal
 
     &:global(.Mui-disabled) {
       color: var(--color-text-disabled);
       -webkit-text-fill-color: var(--color-text-disabled);
+    }
+  }
+
+  // Placeholder styling
+  .placeholder {
+    color: var(--color-text-disabled);
+    font-style: italic;
+  }
+
+  // Small size variant
+  :global(.MuiInputBase-sizeSmall) {
+    :global(.MuiSelect-select) {
+      padding: $spacing-2 $spacing-3; // 8px vertical, 12px horizontal
+      font-size: 0.875rem; // 14px
     }
   }
 

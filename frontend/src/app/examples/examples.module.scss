@@ -12,7 +12,11 @@ $font-family-mono: "Space Mono", "Fira Code", monospace;
 .sidebar {
   width: 280px;
   flex-shrink: 0;
-  background: linear-gradient(180deg, $color-primary-900 0%, $color-primary-800 100%);
+  background: linear-gradient(
+    180deg,
+    $color-primary-900 0%,
+    $color-primary-800 100%
+  );
   color: $color-white;
   display: flex;
   flex-direction: column;
@@ -229,5 +233,3 @@ $font-family-mono: "Space Mono", "Fira Code", monospace;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: $spacing-4;
 }
-
-

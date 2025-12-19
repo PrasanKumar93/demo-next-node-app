@@ -69,6 +69,14 @@
     }
   }
 
+  // Small size variant
+  :global(.MuiInputBase-sizeSmall) {
+    :global(.MuiOutlinedInput-input) {
+      padding: $spacing-2 $spacing-3; // 8px vertical, 12px horizontal
+      font-size: 0.875rem; // 14px
+    }
+  }
+
   // Helper text
   :global(.MuiFormHelperText-root) {
     color: var(--color-text-secondary);
