@@ -24,7 +24,7 @@
   :global(.MuiOutlinedInput-root) {
     color: var(--color-text-primary);
     background-color: var(--color-background-default);
-    border-radius: 8px;
+    border-radius: $radius-lg;
     overflow: hidden;
 
     :global(.MuiOutlinedInput-notchedOutline) {
