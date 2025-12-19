@@ -5,7 +5,7 @@ backend/src/
 ├── config/env.ts          → env vars → typed obj
 ├── api/                   → req handlers, tests co-located
 ├── middleware/            → express middleware (error handling)
-├── routes/index.ts        → route aggregator → controllers
+├── routes/index.ts        → route aggregator → api
 ├── schemas/index.ts       → zod validation schemas
 ├── types/index.ts         → shared TS types/interfaces
 ├── utils/
@@ -23,7 +23,7 @@ backend/src/
 
 ## Key Patterns
 
-- **routes** → **controllers** → **utils/mongodb** → DB
+- **routes** → **api**
 - tests: `*.test.ts` co-located with source
-- validation: zod schemas in `/schemas`, used by mongodb utils
+- validation: zod (database) schemas in `/schemas`
 - env: `/config/env.ts` single source of truth
