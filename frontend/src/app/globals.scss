@@ -2,17 +2,11 @@
 @use "../styles/typography" as type;
 
 // ===========================================
-// Box sizing
+// Box sizing (universally useful, not covered by CssBaseline)
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-// Remove default margins
-* {
-  margin: 0;
-  padding: 0;
 }
 
 // Allow percentage-based heights
@@ -32,7 +26,6 @@ body {
   font-family: type.$font-family-primary;
   font-size: $font-size-base;
   font-weight: $font-weight-regular;
-  line-height: $line-height-normal;
   color: $color-tertiary-900;
   background-color: $color-tertiary-50;
 }

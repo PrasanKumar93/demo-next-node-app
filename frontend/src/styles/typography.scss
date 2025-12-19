@@ -4,7 +4,7 @@
 // ===========================================
 
 // Import font variables
-@import "./variables/fonts";
+@use "./variables/fonts" as *;
 
 // Base path for font files
 $base-path: "/assets" !default;
@@ -126,7 +126,6 @@ body {
   font-family: $font-family-primary;
   font-size: $font-size-base;
   font-weight: $font-weight-regular;
-  line-height: $line-height-normal;
   letter-spacing: $letter-spacing-normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

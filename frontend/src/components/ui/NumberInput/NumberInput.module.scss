@@ -24,6 +24,8 @@
   :global(.MuiOutlinedInput-root) {
     color: var(--color-text-primary);
     background-color: var(--color-background-default);
+    border-radius: 8px;
+    overflow: hidden;
 
     :global(.MuiOutlinedInput-notchedOutline) {
       border-color: var(--color-grey-300);
@@ -53,6 +55,9 @@
   // Input text
   :global(.MuiOutlinedInput-input) {
     color: var(--color-text-primary);
+    // Ensure proper height to match fieldset
+    padding: 16.5px 14px;
+    height: auto;
 
     &::placeholder {
       color: var(--color-text-disabled);
