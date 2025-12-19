@@ -33,7 +33,7 @@ const Button = ({
     endIcon,
 }: ButtonProps) => {
     return (
-        <div className={`${styles.buttonWrapper} ${className || ''}`}>
+        <div className={`${styles['button-wrapper']} ${className || ''}`}>
             <MUIButton
                 onClick={onClick}
                 variant={variant}
@@ -59,4 +59,3 @@ const Button = ({
 };
 
 export default Button;
-

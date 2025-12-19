@@ -23,52 +23,51 @@ import styles from './TelInput.module.scss';
  * ```
  */
 const TelInput = ({
-  name,
-  label,
-  value,
-  onChange,
-  error,
-  helperText,
-  placeholder,
-  disabled = false,
-  required = false,
-  fullWidth = true,
-  size = 'medium',
-  className,
-  countryCode,
+    name,
+    label,
+    value,
+    onChange,
+    error,
+    helperText,
+    placeholder,
+    disabled = false,
+    required = false,
+    fullWidth = true,
+    size = 'medium',
+    className,
+    countryCode,
 }: TelInputProps) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(name, event.target.value);
-  };
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        onChange(name, event.target.value);
+    };
 
-  return (
-    <div className={`${styles.telInputWrapper} ${className || ''}`}>
-      <TextField
-        name={name}
-        label={label}
-        value={value}
-        onChange={handleChange}
-        error={!!error}
-        helperText={error || helperText}
-        placeholder={placeholder}
-        disabled={disabled}
-        required={required}
-        fullWidth={fullWidth}
-        size={size}
-        type="tel"
-        slotProps={{
-          input: countryCode
-            ? {
-                startAdornment: (
-                  <InputAdornment position="start">{countryCode}</InputAdornment>
-                ),
-              }
-            : undefined,
-        }}
-      />
-    </div>
-  );
+    return (
+        <div className={`${styles['tel-input-wrapper']} ${className || ''}`}>
+            <TextField
+                name={name}
+                label={label}
+                value={value}
+                onChange={handleChange}
+                error={!!error}
+                helperText={error || helperText}
+                placeholder={placeholder}
+                disabled={disabled}
+                required={required}
+                fullWidth={fullWidth}
+                size={size}
+                type="tel"
+                slotProps={{
+                    input: countryCode
+                        ? {
+                            startAdornment: (
+                                <InputAdornment position="start">{countryCode}</InputAdornment>
+                            ),
+                        }
+                        : undefined,
+                }}
+            />
+        </div>
+    );
 };
 
 export default TelInput;
-

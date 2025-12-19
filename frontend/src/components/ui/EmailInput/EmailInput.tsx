@@ -22,48 +22,47 @@ import styles from './EmailInput.module.scss';
  * ```
  */
 const EmailInput = ({
-  name,
-  label,
-  value,
-  onChange,
-  error,
-  helperText,
-  placeholder,
-  disabled = false,
-  required = false,
-  fullWidth = true,
-  size = 'medium',
-  className,
-  maxLength,
+    name,
+    label,
+    value,
+    onChange,
+    error,
+    helperText,
+    placeholder,
+    disabled = false,
+    required = false,
+    fullWidth = true,
+    size = 'medium',
+    className,
+    maxLength,
 }: EmailInputProps) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(name, event.target.value);
-  };
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        onChange(name, event.target.value);
+    };
 
-  return (
-    <div className={`${styles.emailInputWrapper} ${className || ''}`}>
-      <TextField
-        name={name}
-        label={label}
-        value={value}
-        onChange={handleChange}
-        error={!!error}
-        helperText={error || helperText}
-        placeholder={placeholder}
-        disabled={disabled}
-        required={required}
-        fullWidth={fullWidth}
-        size={size}
-        type="email"
-        slotProps={{
-          htmlInput: {
-            maxLength,
-          },
-        }}
-      />
-    </div>
-  );
+    return (
+        <div className={`${styles['email-input-wrapper']} ${className || ''}`}>
+            <TextField
+                name={name}
+                label={label}
+                value={value}
+                onChange={handleChange}
+                error={!!error}
+                helperText={error || helperText}
+                placeholder={placeholder}
+                disabled={disabled}
+                required={required}
+                fullWidth={fullWidth}
+                size={size}
+                type="email"
+                slotProps={{
+                    htmlInput: {
+                        maxLength,
+                    },
+                }}
+            />
+        </div>
+    );
 };
 
 export default EmailInput;
-

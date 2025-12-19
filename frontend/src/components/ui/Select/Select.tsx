@@ -29,56 +29,55 @@ import styles from './Select.module.scss';
  * ```
  */
 const Select = ({
-  name,
-  label,
-  value,
-  onChange,
-  options,
-  error,
-  helperText,
-  placeholder,
-  disabled = false,
-  required = false,
-  fullWidth = true,
-  size = 'medium',
-  className,
-  multiple = false,
+    name,
+    label,
+    value,
+    onChange,
+    options,
+    error,
+    helperText,
+    placeholder,
+    disabled = false,
+    required = false,
+    fullWidth = true,
+    size = 'medium',
+    className,
+    multiple = false,
 }: SelectProps) => {
-  const handleChange = (event: SelectChangeEvent<typeof value>) => {
-    onChange(name, event.target.value);
-  };
+    const handleChange = (event: SelectChangeEvent<typeof value>) => {
+        onChange(name, event.target.value);
+    };
 
-  const labelId = `${name}-label`;
+    const labelId = `${name}-label`;
 
-  return (
-    <div className={`${styles.selectWrapper} ${className || ''}`}>
-      <FormControl fullWidth={fullWidth} error={!!error} disabled={disabled} required={required} size={size}>
-        <InputLabel id={labelId}>{label}</InputLabel>
-        <MUISelect
-          labelId={labelId}
-          name={name}
-          value={value}
-          onChange={handleChange}
-          label={label}
-          multiple={multiple}
-          displayEmpty={!!placeholder}
-        >
-          {placeholder && !multiple && (
-            <MenuItem value="" disabled>
-              <em>{placeholder}</em>
-            </MenuItem>
-          )}
-          {options.map((option) => (
-            <MenuItem key={option.value} value={option.value} disabled={option.disabled}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </MUISelect>
-        {(error || helperText) && <FormHelperText>{error || helperText}</FormHelperText>}
-      </FormControl>
-    </div>
-  );
+    return (
+        <div className={`${styles['select-wrapper']} ${className || ''}`}>
+            <FormControl fullWidth={fullWidth} error={!!error} disabled={disabled} required={required} size={size}>
+                <InputLabel id={labelId}>{label}</InputLabel>
+                <MUISelect
+                    labelId={labelId}
+                    name={name}
+                    value={value}
+                    onChange={handleChange}
+                    label={label}
+                    multiple={multiple}
+                    displayEmpty={!!placeholder}
+                >
+                    {placeholder && !multiple && (
+                        <MenuItem value="" disabled>
+                            <em>{placeholder}</em>
+                        </MenuItem>
+                    )}
+                    {options.map((option) => (
+                        <MenuItem key={option.value} value={option.value} disabled={option.disabled}>
+                            {option.label}
+                        </MenuItem>
+                    ))}
+                </MUISelect>
+                {(error || helperText) && <FormHelperText>{error || helperText}</FormHelperText>}
+            </FormControl>
+        </div>
+    );
 };
 
 export default Select;
-

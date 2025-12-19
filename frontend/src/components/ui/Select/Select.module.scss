@@ -1,6 +1,107 @@
 @use "@/styles/variables" as *;
 
-.selectWrapper {
+.select-wrapper {
   width: 100%;
+
+  // Label styling
+  :global(.MuiInputLabel-root) {
+    color: var(--color-text-secondary);
+
+    &:global(.Mui-focused) {
+      color: var(--color-primary-main);
+    }
+
+    &:global(.Mui-error) {
+      color: var(--color-error-main);
+    }
+
+    &:global(.Mui-disabled) {
+      color: var(--color-text-disabled);
+    }
+  }
+
+  // Outlined select styling
+  :global(.MuiOutlinedInput-root) {
+    color: var(--color-text-primary);
+    background-color: var(--color-background-default);
+
+    :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--color-grey-300);
+    }
+
+    &:hover :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--color-grey-500);
+    }
+
+    &:global(.Mui-focused) :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--color-primary-main);
+    }
+
+    &:global(.Mui-error) :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--color-error-main);
+    }
+
+    &:global(.Mui-disabled) {
+      background-color: var(--color-grey-100);
+
+      :global(.MuiOutlinedInput-notchedOutline) {
+        border-color: var(--color-grey-200);
+      }
+    }
+  }
+
+  // Select value text
+  :global(.MuiSelect-select) {
+    color: var(--color-text-primary);
+
+    &:global(.Mui-disabled) {
+      color: var(--color-text-disabled);
+      -webkit-text-fill-color: var(--color-text-disabled);
+    }
+  }
+
+  // Dropdown arrow icon
+  :global(.MuiSelect-icon) {
+    color: var(--color-text-secondary);
+
+    &:global(.Mui-disabled) {
+      color: var(--color-text-disabled);
+    }
+  }
+
+  // Helper text
+  :global(.MuiFormHelperText-root) {
+    color: var(--color-text-secondary);
+
+    &:global(.Mui-error) {
+      color: var(--color-error-main);
+    }
+  }
 }
 
+// Dropdown menu (rendered in portal, needs global scope)
+// Note: These are truly global as MUI renders the menu in a portal outside the component
+:global(.MuiMenu-paper) {
+  background-color: var(--color-background-paper);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+:global(.MuiMenuItem-root) {
+  color: var(--color-text-primary);
+
+  &:hover {
+    background-color: var(--color-grey-100);
+  }
+
+  &:global(.Mui-selected) {
+    background-color: var(--color-grey-200);
+
+    &:hover {
+      background-color: var(--color-grey-200);
+    }
+  }
+
+  &:global(.Mui-disabled) {
+    color: var(--color-text-disabled);
+  }
+}

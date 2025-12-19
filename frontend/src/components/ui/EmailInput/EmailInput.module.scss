@@ -1,6 +1,76 @@
 @use "@/styles/variables" as *;
 
-.emailInputWrapper {
+.email-input-wrapper {
   width: 100%;
-}
 
+  // Label styling
+  :global(.MuiInputLabel-root) {
+    color: var(--color-text-secondary);
+
+    &:global(.Mui-focused) {
+      color: var(--color-primary-main);
+    }
+
+    &:global(.Mui-error) {
+      color: var(--color-error-main);
+    }
+
+    &:global(.Mui-disabled) {
+      color: var(--color-text-disabled);
+    }
+  }
+
+  // Outlined input styling
+  :global(.MuiOutlinedInput-root) {
+    color: var(--color-text-primary);
+    background-color: var(--color-background-default);
+
+    :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--color-grey-300);
+    }
+
+    &:hover :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--color-grey-500);
+    }
+
+    &:global(.Mui-focused) :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--color-primary-main);
+    }
+
+    &:global(.Mui-error) :global(.MuiOutlinedInput-notchedOutline) {
+      border-color: var(--color-error-main);
+    }
+
+    &:global(.Mui-disabled) {
+      background-color: var(--color-grey-100);
+
+      :global(.MuiOutlinedInput-notchedOutline) {
+        border-color: var(--color-grey-200);
+      }
+    }
+  }
+
+  // Input text
+  :global(.MuiOutlinedInput-input) {
+    color: var(--color-text-primary);
+
+    &::placeholder {
+      color: var(--color-text-disabled);
+      opacity: 1;
+    }
+
+    &:disabled {
+      color: var(--color-text-disabled);
+      -webkit-text-fill-color: var(--color-text-disabled);
+    }
+  }
+
+  // Helper text
+  :global(.MuiFormHelperText-root) {
+    color: var(--color-text-secondary);
+
+    &:global(.Mui-error) {
+      color: var(--color-error-main);
+    }
+  }
+}

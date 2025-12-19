@@ -22,55 +22,54 @@ import styles from './TextInput.module.scss';
  * ```
  */
 const TextInput = ({
-  name,
-  label,
-  value,
-  onChange,
-  error,
-  helperText,
-  placeholder,
-  disabled = false,
-  required = false,
-  fullWidth = true,
-  size = 'medium',
-  className,
-  maxLength,
-  minLength,
-  multiline = false,
-  rows = 4,
-  type = 'text',
+    name,
+    label,
+    value,
+    onChange,
+    error,
+    helperText,
+    placeholder,
+    disabled = false,
+    required = false,
+    fullWidth = true,
+    size = 'medium',
+    className,
+    maxLength,
+    minLength,
+    multiline = false,
+    rows = 4,
+    type = 'text',
 }: TextInputProps) => {
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    onChange(name, event.target.value);
-  };
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        onChange(name, event.target.value);
+    };
 
-  return (
-    <div className={`${styles.textInputWrapper} ${className || ''}`}>
-      <TextField
-        name={name}
-        label={label}
-        value={value}
-        onChange={handleChange}
-        error={!!error}
-        helperText={error || helperText}
-        placeholder={placeholder}
-        disabled={disabled}
-        required={required}
-        fullWidth={fullWidth}
-        size={size}
-        multiline={multiline}
-        rows={multiline ? rows : undefined}
-        type={type}
-        slotProps={{
-          htmlInput: {
-            maxLength,
-            minLength,
-          },
-        }}
-      />
-    </div>
-  );
+    return (
+        <div className={`${styles['text-input-wrapper']} ${className || ''}`}>
+            <TextField
+                name={name}
+                label={label}
+                value={value}
+                onChange={handleChange}
+                error={!!error}
+                helperText={error || helperText}
+                placeholder={placeholder}
+                disabled={disabled}
+                required={required}
+                fullWidth={fullWidth}
+                size={size}
+                multiline={multiline}
+                rows={multiline ? rows : undefined}
+                type={type}
+                slotProps={{
+                    htmlInput: {
+                        maxLength,
+                        minLength,
+                    },
+                }}
+            />
+        </div>
+    );
 };
 
 export default TextInput;
-

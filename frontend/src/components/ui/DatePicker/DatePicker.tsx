@@ -24,60 +24,59 @@ import styles from './DatePicker.module.scss';
  * ```
  */
 const DatePicker = ({
-  name,
-  label,
-  value,
-  onChange,
-  error,
-  helperText,
-  disabled = false,
-  required = false,
-  fullWidth = true,
-  size = 'medium',
-  className,
-  minDate,
-  maxDate,
-  format = 'DD/MM/YYYY',
+    name,
+    label,
+    value,
+    onChange,
+    error,
+    helperText,
+    disabled = false,
+    required = false,
+    fullWidth = true,
+    size = 'medium',
+    className,
+    minDate,
+    maxDate,
+    format = 'DD/MM/YYYY',
 }: DatePickerProps) => {
-  // Convert value to dayjs object
-  const dateValue = value ? dayjs(value) : null;
+    // Convert value to dayjs object
+    const dateValue = value ? dayjs(value) : null;
 
-  // Convert min/max dates to dayjs
-  const minDateValue = minDate ? dayjs(minDate) : undefined;
-  const maxDateValue = maxDate ? dayjs(maxDate) : undefined;
+    // Convert min/max dates to dayjs
+    const minDateValue = minDate ? dayjs(minDate) : undefined;
+    const maxDateValue = maxDate ? dayjs(maxDate) : undefined;
 
-  const handleChange = (newValue: Dayjs | null) => {
-    // Convert back to ISO string or null
-    const isoValue = newValue ? newValue.toISOString() : null;
-    onChange(name, isoValue);
-  };
+    const handleChange = (newValue: Dayjs | null) => {
+        // Convert back to ISO string or null
+        const isoValue = newValue ? newValue.toISOString() : null;
+        onChange(name, isoValue);
+    };
 
-  return (
-    <div className={`${styles.datePickerWrapper} ${className || ''}`}>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <MUIDatePicker
-          label={label}
-          value={dateValue}
-          onChange={handleChange}
-          disabled={disabled}
-          minDate={minDateValue}
-          maxDate={maxDateValue}
-          format={format}
-          slotProps={{
-            textField: {
-              name,
-              error: !!error,
-              helperText: error || helperText,
-              required,
-              fullWidth,
-              size,
-            },
-          }}
-        />
-      </LocalizationProvider>
-    </div>
-  );
+    return (
+        <div className={`${styles['date-picker-wrapper']} ${className || ''}`}>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <MUIDatePicker
+                    label={label}
+                    value={dateValue}
+                    onChange={handleChange}
+                    disabled={disabled}
+                    minDate={minDateValue}
+                    maxDate={maxDateValue}
+                    format={format}
+                    slotProps={{
+                        textField: {
+                            name,
+                            error: !!error,
+                            helperText: error || helperText,
+                            required,
+                            fullWidth,
+                            size,
+                        },
+                    }}
+                />
+            </LocalizationProvider>
+        </div>
+    );
 };
 
 export default DatePicker;
-

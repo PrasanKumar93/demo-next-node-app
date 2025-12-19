@@ -1,6 +1,134 @@
 @use "@/styles/variables" as *;
 
-.buttonWrapper {
+.button-wrapper {
   display: inline-block;
-}
 
+  // Primary contained button
+  :global(.MuiButton-containedPrimary) {
+    background-color: var(--color-primary-main);
+    color: var(--color-primary-contrast);
+
+    &:hover {
+      background-color: var(--color-primary-dark);
+    }
+
+    &:disabled {
+      background-color: var(--color-grey-300);
+      color: var(--color-grey-500);
+    }
+  }
+
+  // Secondary contained button
+  :global(.MuiButton-containedSecondary) {
+    background-color: var(--color-secondary-main);
+    color: var(--color-secondary-contrast);
+
+    &:hover {
+      background-color: var(--color-secondary-dark);
+    }
+
+    &:disabled {
+      background-color: var(--color-grey-300);
+      color: var(--color-grey-500);
+    }
+  }
+
+  // Primary outlined button
+  :global(.MuiButton-outlinedPrimary) {
+    color: var(--color-primary-main);
+    border-color: var(--color-primary-main);
+
+    &:hover {
+      background-color: rgba(0, 106, 106, 0.04);
+      border-color: var(--color-primary-dark);
+    }
+
+    &:disabled {
+      color: var(--color-grey-400);
+      border-color: var(--color-grey-300);
+    }
+  }
+
+  // Secondary outlined button
+  :global(.MuiButton-outlinedSecondary) {
+    color: var(--color-secondary-main);
+    border-color: var(--color-secondary-main);
+
+    &:hover {
+      background-color: rgba(186, 93, 7, 0.04);
+      border-color: var(--color-secondary-dark);
+    }
+
+    &:disabled {
+      color: var(--color-grey-400);
+      border-color: var(--color-grey-300);
+    }
+  }
+
+  // Primary text button
+  :global(.MuiButton-textPrimary) {
+    color: var(--color-primary-main);
+
+    &:hover {
+      background-color: rgba(0, 106, 106, 0.04);
+    }
+
+    &:disabled {
+      color: var(--color-grey-400);
+    }
+  }
+
+  // Secondary text button
+  :global(.MuiButton-textSecondary) {
+    color: var(--color-secondary-main);
+
+    &:hover {
+      background-color: rgba(186, 93, 7, 0.04);
+    }
+
+    &:disabled {
+      color: var(--color-grey-400);
+    }
+  }
+
+  // Error button variants
+  :global(.MuiButton-containedError) {
+    background-color: var(--color-error-main);
+
+    &:hover {
+      background-color: darken($color-error, 10%);
+    }
+  }
+
+  :global(.MuiButton-outlinedError) {
+    color: var(--color-error-main);
+    border-color: var(--color-error-main);
+  }
+
+  :global(.MuiButton-textError) {
+    color: var(--color-error-main);
+  }
+
+  // Success button variants
+  :global(.MuiButton-containedSuccess) {
+    background-color: var(--color-success-main);
+
+    &:hover {
+      background-color: darken($color-success, 10%);
+    }
+  }
+
+  :global(.MuiButton-outlinedSuccess) {
+    color: var(--color-success-main);
+    border-color: var(--color-success-main);
+  }
+
+  :global(.MuiButton-textSuccess) {
+    color: var(--color-success-main);
+  }
+
+  // Loading spinner
+  :global(.MuiCircularProgress-root) {
+    color: inherit;
+  }
+}
