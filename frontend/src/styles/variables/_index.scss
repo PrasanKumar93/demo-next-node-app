@@ -1,0 +1,10 @@
+// ===========================================
+// VARIABLES - Index (Entry Point)
+// ===========================================
+// This file acts as a barrel export for all variable partials.
+// Usage: @use "styles/variables" as *;
+
+// Forward all variable modules to consumers
+@forward "colors";
+@forward "fonts";
+@forward "spacing";
