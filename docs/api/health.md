@@ -58,22 +58,22 @@ curl -X POST http://localhost:3000/api/health \
 
 ### Response Fields
 
-| Field            | Type    | Description                              |
-| ---------------- | ------- | ---------------------------------------- |
-| `success`        | boolean | Indicates if request succeeded           |
-| `data.status`    | string  | Server status (`"ok"` or `"error"`)      |
-| `data.timestamp` | string  | Current server time in ISO format        |
-| `data.uptime`    | number  | Server uptime in seconds                 |
+| Field            | Type    | Description                                        |
+| ---------------- | ------- | -------------------------------------------------- |
+| `success`        | boolean | Indicates if request succeeded                     |
+| `data.status`    | string  | Server status (`"ok"` or `"error"`)                |
+| `data.timestamp` | string  | Current server time in ISO format                  |
+| `data.uptime`    | number  | Server uptime in seconds                           |
 | `data.mongodb`   | string  | MongoDB status (`"connected"` or `"disconnected"`) |
 
 ---
 
 ### MongoDB Status Values
 
-| Value          | Description                           |
-| -------------- | ------------------------------------- |
-| `connected`    | Successfully connected to MongoDB     |
-| `disconnected` | Not connected to MongoDB              |
+| Value          | Description                       |
+| -------------- | --------------------------------- |
+| `connected`    | Successfully connected to MongoDB |
+| `disconnected` | Not connected to MongoDB          |
 
 ---
 
@@ -106,44 +106,3 @@ curl -X POST http://localhost:3000/api/health \
   }
 }
 ```
-
----
-
-### Use Cases
-
-- Monitor server health in production
-- Check MongoDB connection status
-- Verify server uptime
-- Load balancer health checks
-- Kubernetes liveness/readiness probes
-- CI/CD deployment verification
-
----
-
-### Integration with Monitoring Tools
-
-This endpoint can be used with:
-
-- **Kubernetes**: Configure as liveness/readiness probe
-- **AWS ALB**: Target group health check
-- **Datadog/New Relic**: Custom health check monitors
-- **Uptime Robot**: HTTP(S) monitoring
-
-#### Kubernetes Probe Example
-
-```yaml
-livenessProbe:
-  httpGet:
-    path: /api/health
-    port: 3000
-  initialDelaySeconds: 30
-  periodSeconds: 10
-```
-
-#### Docker Healthcheck Example
-
-```dockerfile
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD curl -f -X POST http://localhost:3000/api/health -H "Content-Type: application/json" -d '{}' || exit 1
-```
-

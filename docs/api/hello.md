@@ -55,10 +55,10 @@ curl -X POST http://localhost:3000/api/hello \
 
 ### Response Fields
 
-| Field              | Type    | Description                    |
-| ------------------ | ------- | ------------------------------ |
-| `success`          | boolean | Indicates if request succeeded |
-| `data.message`     | string  | Hello World message            |
+| Field          | Type    | Description                    |
+| -------------- | ------- | ------------------------------ |
+| `success`      | boolean | Indicates if request succeeded |
+| `data.message` | string  | Hello World message            |
 
 ---
 
@@ -68,4 +68,3 @@ curl -X POST http://localhost:3000/api/hello \
 - Test network connectivity
 - Validate API response format
 - Health check (basic)
-
