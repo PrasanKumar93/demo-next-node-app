@@ -1,118 +1,110 @@
 // ===========================================
 // MATERIAL DESIGN 3 COLOR SYSTEM
 // Theme: Deep Teal + Terracotta
+// All values as CSS Custom Properties
 // ===========================================
 
-// -----------------------------------------
-// PRIMARY - Teal
-// -----------------------------------------
-$color-primary-50: #e0f7f7;
-$color-primary-100: #b3ebeb;
-$color-primary-200: #80dede;
-$color-primary-300: #4dd1d1;
-$color-primary-400: #26c6c6;
-$color-primary-500: #00bbbb;
-$color-primary-600: #00a8a8;
-$color-primary-700: #009090;
-$color-primary-800: #006a6a; // Main primary
-$color-primary-900: #004f4f;
-$color-primary-950: #002d2d;
-
-// -----------------------------------------
-// SECONDARY - Terracotta/Amber
-// -----------------------------------------
-$color-secondary-50: #fff3e0;
-$color-secondary-100: #ffe0b2;
-$color-secondary-200: #ffcc80;
-$color-secondary-300: #ffb74d;
-$color-secondary-400: #ffa726;
-$color-secondary-500: #ff9800;
-$color-secondary-600: #fb8c00;
-$color-secondary-700: #e88a3c;
-$color-secondary-800: #ba5d07; // Main secondary
-$color-secondary-900: #8a4400;
-$color-secondary-950: #4a2500;
-
-// -----------------------------------------
-// TERTIARY - Slate Blue
-// -----------------------------------------
-$color-tertiary-50: #eceff1;
-$color-tertiary-100: #cfd8dc;
-$color-tertiary-200: #b0bec5;
-$color-tertiary-300: #90a4ae;
-$color-tertiary-400: #78909c;
-$color-tertiary-500: #607d8b;
-$color-tertiary-600: #546e7a;
-$color-tertiary-700: #455a64;
-$color-tertiary-800: #37474f;
-$color-tertiary-900: #263238;
-$color-tertiary-950: #151c1f;
-
-// -----------------------------------------
-// STATUS COLORS
-// -----------------------------------------
-// Error
-$color-error: #d32f2f; // Main error color
-
-// Success
-$color-success: #388e3c; // Main success color
-
-// Warning
-$color-warning: #f57c00; // Main warning color
-
-// Info
-$color-info: #1976d2; // Main info color
-
-// -----------------------------------------
-// BASE COLORS
-// -----------------------------------------
-$color-white: #ffffff;
-$color-black: #000000;
-
-// ===========================================
-// CSS CUSTOM PROPERTIES EXPORT
-// For MUI Theme Integration
-// ===========================================
 :root {
-  // Primary
-  --color-primary-main: #{$color-primary-800};
-  --color-primary-light: #{$color-primary-400};
-  --color-primary-dark: #{$color-primary-900};
-  --color-primary-contrast: #{$color-white};
+  // -----------------------------------------
+  // PRIMARY - Teal
+  // -----------------------------------------
+  --color-primary-50: #e0f7f7;
+  --color-primary-100: #b3ebeb;
+  --color-primary-200: #80dede;
+  --color-primary-300: #4dd1d1;
+  --color-primary-400: #26c6c6;
+  --color-primary-500: #00bbbb;
+  --color-primary-600: #00a8a8;
+  --color-primary-700: #009090;
+  --color-primary-800: #006a6a;
+  --color-primary-900: #004f4f;
+  --color-primary-950: #002d2d;
 
-  // Secondary
-  --color-secondary-main: #{$color-secondary-800};
-  --color-secondary-light: #{$color-secondary-400};
-  --color-secondary-dark: #{$color-secondary-900};
-  --color-secondary-contrast: #{$color-white};
+  // Semantic aliases
+  --color-primary-main: var(--color-primary-800);
+  --color-primary-light: var(--color-primary-400);
+  --color-primary-dark: var(--color-primary-900);
+  --color-primary-contrast: var(--color-white);
 
-  // Status Colors
-  --color-error-main: #{$color-error};
-  --color-success-main: #{$color-success};
-  --color-warning-main: #{$color-warning};
-  --color-info-main: #{$color-info};
+  // -----------------------------------------
+  // SECONDARY - Terracotta/Amber
+  // -----------------------------------------
+  --color-secondary-50: #fff3e0;
+  --color-secondary-100: #ffe0b2;
+  --color-secondary-200: #ffcc80;
+  --color-secondary-300: #ffb74d;
+  --color-secondary-400: #ffa726;
+  --color-secondary-500: #ff9800;
+  --color-secondary-600: #fb8c00;
+  --color-secondary-700: #e88a3c;
+  --color-secondary-800: #ba5d07;
+  --color-secondary-900: #8a4400;
+  --color-secondary-950: #4a2500;
 
-  // Grey Scale (from tertiary)
-  --color-grey-50: #{$color-tertiary-50};
-  --color-grey-100: #{$color-tertiary-100};
-  --color-grey-200: #{$color-tertiary-200};
-  --color-grey-300: #{$color-tertiary-300};
-  --color-grey-400: #{$color-tertiary-400};
-  --color-grey-500: #{$color-tertiary-500};
-  --color-grey-600: #{$color-tertiary-600};
-  --color-grey-700: #{$color-tertiary-700};
-  --color-grey-800: #{$color-tertiary-800};
-  --color-grey-900: #{$color-tertiary-900};
+  // Semantic aliases
+  --color-secondary-main: var(--color-secondary-800);
+  --color-secondary-light: var(--color-secondary-400);
+  --color-secondary-dark: var(--color-secondary-900);
+  --color-secondary-contrast: var(--color-white);
 
-  // Base
-  --color-white: #{$color-white};
-  --color-black: #{$color-black};
+  // -----------------------------------------
+  // TERTIARY - Slate Blue (used as Grey scale)
+  // -----------------------------------------
+  --color-tertiary-50: #eceff1;
+  --color-tertiary-100: #cfd8dc;
+  --color-tertiary-200: #b0bec5;
+  --color-tertiary-300: #90a4ae;
+  --color-tertiary-400: #78909c;
+  --color-tertiary-500: #607d8b;
+  --color-tertiary-600: #546e7a;
+  --color-tertiary-700: #455a64;
+  --color-tertiary-800: #37474f;
+  --color-tertiary-900: #263238;
+  --color-tertiary-950: #151c1f;
 
-  // Background & Surface
-  --color-background-default: #{$color-white};
-  --color-background-paper: #{$color-tertiary-50};
-  --color-text-primary: #{$color-tertiary-900};
-  --color-text-secondary: #{$color-tertiary-600};
-  --color-text-disabled: #{$color-tertiary-400};
-  --color-divider: #{$color-tertiary-200};
+  // Grey aliases (maps to tertiary)
+  --color-grey-50: var(--color-tertiary-50);
+  --color-grey-100: var(--color-tertiary-100);
+  --color-grey-200: var(--color-tertiary-200);
+  --color-grey-300: var(--color-tertiary-300);
+  --color-grey-400: var(--color-tertiary-400);
+  --color-grey-500: var(--color-tertiary-500);
+  --color-grey-600: var(--color-tertiary-600);
+  --color-grey-700: var(--color-tertiary-700);
+  --color-grey-800: var(--color-tertiary-800);
+  --color-grey-900: var(--color-tertiary-900);
+
+  // -----------------------------------------
+  // STATUS COLORS
+  // -----------------------------------------
+  --color-error: #d32f2f;
+  --color-error-dark: #b71c1c;
+  --color-success: #388e3c;
+  --color-success-dark: #2e7d32;
+  --color-warning: #f57c00;
+  --color-warning-dark: #e65100;
+  --color-info: #1976d2;
+  --color-info-dark: #1565c0;
+
+  // Semantic aliases
+  --color-error-main: var(--color-error);
+  --color-success-main: var(--color-success);
+  --color-warning-main: var(--color-warning);
+  --color-info-main: var(--color-info);
+
+  // -----------------------------------------
+  // BASE COLORS
+  // -----------------------------------------
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  // -----------------------------------------
+  // BACKGROUND & SURFACE
+  // -----------------------------------------
+  --color-background-default: var(--color-white);
+  --color-background-paper: var(--color-tertiary-50);
+  --color-text-primary: var(--color-tertiary-900);
+  --color-text-secondary: var(--color-tertiary-600);
+  --color-text-disabled: var(--color-tertiary-400);
+  --color-divider: var(--color-tertiary-200);
 }

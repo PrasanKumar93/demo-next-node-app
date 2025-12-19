@@ -1,10 +1,10 @@
 // ===========================================
 // VARIABLES - Index (Entry Point)
 // ===========================================
-// This file acts as a barrel export for all variable partials.
-// Usage: @use "styles/variables" as *;
+// This file imports all CSS Custom Property definitions.
+// Usage: @use "styles/variables" or @import "styles/variables"
 
-// Forward all variable modules to consumers
-@forward "colors";
-@forward "fonts";
-@forward "spacing";
+// Import all variable files to ensure :root definitions are loaded
+@import "colors";
+@import "fonts";
+@import "spacing";

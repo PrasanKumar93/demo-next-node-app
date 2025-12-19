@@ -1,8 +1,3 @@
-@use "@/styles/variables" as *;
-
-// Font families (from typography)
-$font-family-mono: "Space Mono", "Fira Code", monospace;
-
 // Layout with sidebar
 .layout {
   display: flex;
@@ -14,10 +9,10 @@ $font-family-mono: "Space Mono", "Fira Code", monospace;
   flex-shrink: 0;
   background: linear-gradient(
     180deg,
-    $color-primary-900 0%,
-    $color-primary-800 100%
+    var(--color-primary-900) 0%,
+    var(--color-primary-800) 100%
   );
-  color: $color-white;
+  color: var(--color-white);
   display: flex;
   flex-direction: column;
   position: sticky;
@@ -27,68 +22,68 @@ $font-family-mono: "Space Mono", "Fira Code", monospace;
 }
 
 .sidebarHeader {
-  padding: $spacing-6;
-  border-bottom: 1px solid rgba($color-white, 0.1);
+  padding: var(--spacing-6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   h1 {
-    font-size: $font-size-xl;
-    font-weight: $font-weight-bold;
-    margin-bottom: $spacing-1;
-    color: $color-white;
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-1);
+    color: var(--color-white);
   }
 
   p {
-    font-size: $font-size-sm;
-    color: rgba($color-white, 0.7);
+    font-size: var(--font-size-sm);
+    color: rgba(255, 255, 255, 0.7);
   }
 }
 
 .nav {
   flex: 1;
-  padding: $spacing-3;
+  padding: var(--spacing-3);
   display: flex;
   flex-direction: column;
-  gap: $spacing-1;
+  gap: var(--spacing-1);
 }
 
 .navItem {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: $spacing-3 $spacing-4;
+  padding: var(--spacing-3) var(--spacing-4);
   border: none;
   background: transparent;
-  border-radius: $radius-md;
+  border-radius: var(--radius-md);
   cursor: pointer;
   text-align: left;
-  transition: $transition-base;
+  transition: var(--transition-base);
 
   &:hover {
-    background: rgba($color-white, 0.1);
+    background: rgba(255, 255, 255, 0.1);
   }
 
   &.active {
-    background: rgba($color-white, 0.15);
-    box-shadow: inset 3px 0 0 $color-secondary-400;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: inset 3px 0 0 var(--color-secondary-400);
   }
 }
 
 .navName {
-  font-size: $font-size-md;
-  font-weight: $font-weight-semibold;
-  color: $color-white;
-  margin-bottom: $spacing-1;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-white);
+  margin-bottom: var(--spacing-1);
 }
 
 .navDescription {
-  font-size: $font-size-xs;
-  color: rgba($color-white, 0.6);
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.4;
 }
 
 .content {
   flex: 1;
-  background: $color-tertiary-50;
+  background: var(--color-tertiary-50);
   min-height: 100vh;
   overflow-y: auto;
 }
@@ -97,7 +92,7 @@ $font-family-mono: "Space Mono", "Fira Code", monospace;
   // Reset the examplePage styles when embedded
   .examplePage {
     max-width: 100%;
-    padding: $spacing-6 $spacing-8;
+    padding: var(--spacing-6) var(--spacing-8);
   }
 }
 
@@ -106,7 +101,7 @@ $font-family-mono: "Space Mono", "Fira Code", monospace;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: $spacing-8;
+  padding: var(--spacing-8);
 }
 
 .placeholderContent {
@@ -114,15 +109,15 @@ $font-family-mono: "Space Mono", "Fira Code", monospace;
   max-width: 400px;
 
   h2 {
-    font-size: $font-size-2xl;
-    font-weight: $font-weight-semibold;
-    color: $color-tertiary-700;
-    margin-bottom: $spacing-3;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-tertiary-700);
+    margin-bottom: var(--spacing-3);
   }
 
   p {
-    font-size: $font-size-md;
-    color: $color-tertiary-500;
+    font-size: var(--font-size-md);
+    color: var(--color-tertiary-500);
     line-height: 1.6;
   }
 }
@@ -130,57 +125,57 @@ $font-family-mono: "Space Mono", "Fira Code", monospace;
 .examplePage {
   max-width: 900px;
   margin: 0 auto;
-  padding: $spacing-8 $spacing-4;
+  padding: var(--spacing-8) var(--spacing-4);
 }
 
 .header {
-  margin-bottom: $spacing-8;
+  margin-bottom: var(--spacing-8);
 
   h1 {
-    color: $color-primary-800;
-    margin-bottom: $spacing-2;
-    font-size: $font-size-3xl;
-    font-weight: $font-weight-bold;
+    color: var(--color-primary-800);
+    margin-bottom: var(--spacing-2);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
   }
 
   p {
-    color: $color-tertiary-600;
-    font-size: $font-size-lg;
+    color: var(--color-tertiary-600);
+    font-size: var(--font-size-lg);
     line-height: 1.6;
   }
 }
 
 .section {
-  margin-bottom: $spacing-10;
-  padding-bottom: $spacing-8;
-  border-bottom: 1px solid $color-tertiary-200;
+  margin-bottom: var(--spacing-10);
+  padding-bottom: var(--spacing-8);
+  border-bottom: 1px solid var(--color-tertiary-200);
 
   &:last-child {
     border-bottom: none;
   }
 
   h2 {
-    color: $color-tertiary-800;
-    font-size: $font-size-xl;
-    font-weight: $font-weight-semibold;
-    margin-bottom: $spacing-4;
+    color: var(--color-tertiary-800);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-4);
   }
 }
 
 .demo {
-  background-color: $color-tertiary-50;
-  border-radius: $radius-lg;
-  padding: $spacing-6;
-  margin-bottom: $spacing-4;
+  background-color: var(--color-tertiary-50);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  margin-bottom: var(--spacing-4);
 }
 
 .code {
-  background-color: $color-tertiary-900;
-  color: $color-tertiary-100;
-  border-radius: $radius-md;
-  padding: $spacing-4;
-  font-family: $font-family-mono;
-  font-size: $font-size-sm;
+  background-color: var(--color-tertiary-900);
+  color: var(--color-tertiary-100);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-4);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-sm);
   overflow-x: auto;
   line-height: 1.6;
 }
@@ -188,37 +183,37 @@ $font-family-mono: "Space Mono", "Fira Code", monospace;
 .propsTable {
   width: 100%;
   border-collapse: collapse;
-  font-size: $font-size-sm;
+  font-size: var(--font-size-sm);
 
   th,
   td {
     text-align: left;
-    padding: $spacing-3 $spacing-4;
-    border-bottom: 1px solid $color-tertiary-200;
+    padding: var(--spacing-3) var(--spacing-4);
+    border-bottom: 1px solid var(--color-tertiary-200);
   }
 
   th {
-    background-color: $color-tertiary-100;
-    color: $color-tertiary-800;
-    font-weight: $font-weight-semibold;
+    background-color: var(--color-tertiary-100);
+    color: var(--color-tertiary-800);
+    font-weight: var(--font-weight-semibold);
   }
 
   td {
-    color: $color-tertiary-700;
+    color: var(--color-tertiary-700);
   }
 
   code {
-    background-color: $color-tertiary-100;
-    padding: $spacing-1 $spacing-2;
-    border-radius: $radius-sm;
-    font-family: $font-family-mono;
-    font-size: $font-size-xs;
+    background-color: var(--color-tertiary-100);
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-xs);
   }
 }
 
 .demoRow {
   display: flex;
-  gap: $spacing-4;
+  gap: var(--spacing-4);
   flex-wrap: wrap;
   align-items: flex-start;
 
@@ -231,5 +226,5 @@ $font-family-mono: "Space Mono", "Fira Code", monospace;
 .demoGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: $spacing-4;
+  gap: var(--spacing-4);
 }

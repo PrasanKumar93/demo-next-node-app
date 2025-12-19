@@ -1,5 +1,5 @@
 @use "../styles/variables" as *;
-@use "../styles/typography" as type;
+@use "../styles/typography";
 
 // ===========================================
 // Box sizing (universally useful, not covered by CssBaseline)
@@ -23,9 +23,9 @@ html {
 }
 
 body {
-  font-family: type.$font-family-primary;
-  font-size: $font-size-base;
-  font-weight: $font-weight-regular;
-  color: $color-tertiary-900;
-  background-color: $color-tertiary-50;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-tertiary-900);
+  background-color: var(--color-tertiary-50);
 }

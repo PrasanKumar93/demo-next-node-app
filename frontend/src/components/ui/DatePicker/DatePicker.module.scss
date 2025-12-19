@@ -1,11 +1,8 @@
-@use "@/styles/variables" as *;
-
 .date-picker-wrapper {
   width: 100%;
 
   // ===========================================
   // TYPOGRAPHY OVERRIDES
-  // Use CSS variables from typography.scss
   // ===========================================
 
   // Label styling
@@ -30,7 +27,6 @@
 
   // ===========================================
   // COLOR OVERRIDES
-  // Use CSS variables from _colors.scss
   // ===========================================
 
   // Outlined input styling
@@ -38,12 +34,12 @@
     font-family: var(--font-family-primary);
     color: var(--color-text-primary);
     background-color: var(--color-background-default);
-    border-radius: $radius-lg;
+    border-radius: var(--radius-lg);
     overflow: hidden;
 
     // Remove extra padding MUI adds for end adornment
     &:global(.MuiInputBase-adornedEnd) {
-      padding-right: $spacing-1; // Reduce from MUI default 14px
+      padding-right: var(--spacing-1); // Reduce from MUI default 14px
     }
 
     :global(.MuiOutlinedInput-notchedOutline) {
@@ -78,7 +74,7 @@
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
     color: var(--color-text-primary);
-    padding: $spacing-3 $spacing-3; // 12px vertical & horizontal
+    padding: var(--spacing-3) var(--spacing-3); // 12px vertical & horizontal
     height: auto;
 
     &::placeholder {
@@ -95,7 +91,7 @@
   // Small size variant
   :global(.MuiInputBase-sizeSmall) {
     :global(.MuiOutlinedInput-input) {
-      padding: $spacing-2 $spacing-3; // 8px vertical, 12px horizontal
+      padding: var(--spacing-2) var(--spacing-3); // 8px vertical, 12px horizontal
       font-size: var(--font-size-md); // 14px
     }
   }
@@ -104,8 +100,8 @@
   :global(.MuiInputAdornment-root) {
     :global(.MuiIconButton-root) {
       color: var(--color-text-secondary);
-      padding: $spacing-1; // Minimal padding to match input height
-      margin-right: $spacing-1;
+      padding: var(--spacing-1); // Minimal padding to match input height
+      margin-right: var(--spacing-1);
 
       &:hover {
         background-color: var(--color-grey-100);
