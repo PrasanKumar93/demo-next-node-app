@@ -32,10 +32,10 @@ interface FetchOptions extends Omit<RequestInit, "body"> {
  * @param options - Fetch options including method, headers, body
  * @returns Promise with typed data
  */
-async function fetchApi<T>(
+const fetchApi = async <T>(
   endpoint: string,
   options: FetchOptions = {}
-): Promise<T> {
+): Promise<T> => {
   const { body, headers, ...restOptions } = options;
 
   const url = `${API_BASE_URL}${endpoint}`;
@@ -82,7 +82,7 @@ async function fetchApi<T>(
 
     throw new ApiError("An unknown error occurred", 0);
   }
-}
+};
 
 /**
  * POST request wrapper
@@ -90,12 +90,12 @@ async function fetchApi<T>(
  * @param body - Request body (defaults to empty object)
  * @returns Promise with typed data
  */
-async function postApi<T>(endpoint: string, body: unknown = {}): Promise<T> {
+const postApi = async <T>(endpoint: string, body: unknown = {}): Promise<T> => {
   return fetchApi<T>(endpoint, {
     method: "POST",
     body,
   });
-}
+};
 
 // ============================================
 // API Methods
@@ -104,30 +104,30 @@ async function postApi<T>(endpoint: string, body: unknown = {}): Promise<T> {
 /**
  * Health check endpoint
  */
-async function checkHealth(): Promise<HealthCheckData> {
+const checkHealth = async (): Promise<HealthCheckData> => {
   return postApi<HealthCheckData>("/api/health");
-}
+};
 
 /**
  * Hello world endpoint
  */
-async function getHello(): Promise<HelloData> {
+const getHello = async (): Promise<HelloData> => {
   return postApi<HelloData>("/api/hello");
-}
+};
 
 /**
  * Get all students
  */
-async function getAllStudents(): Promise<Student[]> {
+const getAllStudents = async (): Promise<Student[]> => {
   return postApi<Student[]>("/api/getAllStudents");
-}
+};
 
 /**
  * Create a new student
  */
-async function createStudent(student: CreateStudentInput): Promise<Student> {
+const createStudent = async (student: CreateStudentInput): Promise<Student> => {
   return postApi<Student>("/api/createStudent", student);
-}
+};
 
 export {
   ApiError,

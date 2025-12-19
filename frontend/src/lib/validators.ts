@@ -42,13 +42,13 @@ type CreateStudentInput = z.infer<typeof CreateStudentSchema>;
 type StudentAddress = z.infer<typeof AddressSchema>;
 
 // Validation helper function
-function validateStudent(data: unknown) {
+const validateStudent = (data: unknown) => {
   return StudentSchema.safeParse(data);
-}
+};
 
-function validateCreateStudent(data: unknown) {
+const validateCreateStudent = (data: unknown) => {
   return CreateStudentSchema.safeParse(data);
-}
+};
 
 export {
   AddressSchema,

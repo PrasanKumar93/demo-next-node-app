@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
 
-function Home() {
+const Home = () => {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
