@@ -1,0 +1,233 @@
+@use "@/styles/variables" as *;
+
+// Font families (from typography)
+$font-family-mono: "Space Mono", "Fira Code", monospace;
+
+// Layout with sidebar
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, $color-primary-900 0%, $color-primary-800 100%);
+  color: $color-white;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebarHeader {
+  padding: $spacing-6;
+  border-bottom: 1px solid rgba($color-white, 0.1);
+
+  h1 {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-1;
+    color: $color-white;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    color: rgba($color-white, 0.7);
+  }
+}
+
+.nav {
+  flex: 1;
+  padding: $spacing-3;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-1;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: $spacing-3 $spacing-4;
+  border: none;
+  background: transparent;
+  border-radius: $radius-md;
+  cursor: pointer;
+  text-align: left;
+  transition: $transition-base;
+
+  &:hover {
+    background: rgba($color-white, 0.1);
+  }
+
+  &.active {
+    background: rgba($color-white, 0.15);
+    box-shadow: inset 3px 0 0 $color-secondary-400;
+  }
+}
+
+.navName {
+  font-size: $font-size-md;
+  font-weight: $font-weight-semibold;
+  color: $color-white;
+  margin-bottom: $spacing-1;
+}
+
+.navDescription {
+  font-size: $font-size-xs;
+  color: rgba($color-white, 0.6);
+  line-height: 1.4;
+}
+
+.content {
+  flex: 1;
+  background: $color-tertiary-50;
+  min-height: 100vh;
+  overflow-y: auto;
+}
+
+.exampleWrapper {
+  // Reset the examplePage styles when embedded
+  .examplePage {
+    max-width: 100%;
+    padding: $spacing-6 $spacing-8;
+  }
+}
+
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: $spacing-8;
+}
+
+.placeholderContent {
+  text-align: center;
+  max-width: 400px;
+
+  h2 {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-semibold;
+    color: $color-tertiary-700;
+    margin-bottom: $spacing-3;
+  }
+
+  p {
+    font-size: $font-size-md;
+    color: $color-tertiary-500;
+    line-height: 1.6;
+  }
+}
+
+.examplePage {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: $spacing-8 $spacing-4;
+}
+
+.header {
+  margin-bottom: $spacing-8;
+
+  h1 {
+    color: $color-primary-800;
+    margin-bottom: $spacing-2;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+  }
+
+  p {
+    color: $color-tertiary-600;
+    font-size: $font-size-lg;
+    line-height: 1.6;
+  }
+}
+
+.section {
+  margin-bottom: $spacing-10;
+  padding-bottom: $spacing-8;
+  border-bottom: 1px solid $color-tertiary-200;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  h2 {
+    color: $color-tertiary-800;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-4;
+  }
+}
+
+.demo {
+  background-color: $color-tertiary-50;
+  border-radius: $radius-lg;
+  padding: $spacing-6;
+  margin-bottom: $spacing-4;
+}
+
+.code {
+  background-color: $color-tertiary-900;
+  color: $color-tertiary-100;
+  border-radius: $radius-md;
+  padding: $spacing-4;
+  font-family: $font-family-mono;
+  font-size: $font-size-sm;
+  overflow-x: auto;
+  line-height: 1.6;
+}
+
+.propsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-sm;
+
+  th,
+  td {
+    text-align: left;
+    padding: $spacing-3 $spacing-4;
+    border-bottom: 1px solid $color-tertiary-200;
+  }
+
+  th {
+    background-color: $color-tertiary-100;
+    color: $color-tertiary-800;
+    font-weight: $font-weight-semibold;
+  }
+
+  td {
+    color: $color-tertiary-700;
+  }
+
+  code {
+    background-color: $color-tertiary-100;
+    padding: $spacing-1 $spacing-2;
+    border-radius: $radius-sm;
+    font-family: $font-family-mono;
+    font-size: $font-size-xs;
+  }
+}
+
+.demoRow {
+  display: flex;
+  gap: $spacing-4;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  > * {
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+.demoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-4;
+}
+
+

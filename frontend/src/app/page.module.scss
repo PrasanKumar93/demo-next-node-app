@@ -1,5 +1,8 @@
 @use "../styles/variables" as *;
 
+// Font family (from typography)
+$font-family-primary: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+
 .page {
   min-height: 100vh;
   display: flex;
@@ -30,12 +33,12 @@
   h1 {
     font-size: $font-size-2xl;
     font-weight: $font-weight-bold;
-    color: $color-gray-900;
+    color: $color-tertiary-900;
   }
 
   p {
     font-size: $font-size-base;
-    color: $color-gray-600;
+    color: $color-tertiary-600;
     line-height: $line-height-relaxed;
 
     a {
@@ -63,7 +66,7 @@
   justify-content: center;
   gap: $spacing-2;
   padding: $spacing-3 $spacing-5;
-  font-family: $font-family-sans;
+  font-family: $font-family-primary;
   font-size: $font-size-sm;
   font-weight: $font-weight-medium;
   line-height: $line-height-normal;
@@ -71,11 +74,11 @@
   border: none;
   cursor: pointer;
   transition: all $transition-fast;
-  background-color: $color-gray-900;
+  background-color: $color-tertiary-900;
   color: $color-white;
 
   &:focus-visible {
-    outline: 2px solid $color-primary;
+    outline: 2px solid $color-primary-800;
     outline-offset: 2px;
   }
 
@@ -85,7 +88,7 @@
   }
 
   &:hover {
-    background-color: $color-gray-800;
+    background-color: $color-tertiary-800;
   }
 
   .logo {
@@ -101,7 +104,7 @@
   justify-content: center;
   gap: $spacing-2;
   padding: $spacing-3 $spacing-5;
-  font-family: $font-family-sans;
+  font-family: $font-family-primary;
   font-size: $font-size-sm;
   font-weight: $font-weight-medium;
   line-height: $line-height-normal;
@@ -109,11 +112,11 @@
   cursor: pointer;
   transition: all $transition-fast;
   background-color: transparent;
-  color: $color-gray-900;
-  border: 1px solid $color-gray-300;
+  color: $color-tertiary-900;
+  border: 1px solid $color-tertiary-300;
 
   &:focus-visible {
-    outline: 2px solid $color-primary;
+    outline: 2px solid $color-primary-800;
     outline-offset: 2px;
   }
 
@@ -123,7 +126,7 @@
   }
 
   &:hover {
-    background-color: $color-gray-100;
-    border-color: $color-gray-400;
+    background-color: $color-tertiary-100;
+    border-color: $color-tertiary-400;
   }
 }

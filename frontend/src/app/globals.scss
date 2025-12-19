@@ -1,4 +1,5 @@
 @use "../styles/variables" as *;
+@use "../styles/typography" as type;
 
 // ===========================================
 // Box sizing
@@ -28,10 +29,10 @@ html {
 }
 
 body {
-  font-family: $font-family-sans;
+  font-family: type.$font-family-primary;
   font-size: $font-size-base;
-  font-weight: $font-weight-normal;
+  font-weight: $font-weight-regular;
   line-height: $line-height-normal;
-  color: $color-gray-900;
-  background-color: $color-gray-50;
+  color: $color-tertiary-900;
+  background-color: $color-tertiary-50;
 }

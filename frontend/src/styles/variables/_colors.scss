@@ -68,3 +68,51 @@ $color-info: #1976d2; // Main info color
 // -----------------------------------------
 $color-white: #ffffff;
 $color-black: #000000;
+
+// ===========================================
+// CSS CUSTOM PROPERTIES EXPORT
+// For MUI Theme Integration
+// ===========================================
+:root {
+  // Primary
+  --color-primary-main: #{$color-primary-800};
+  --color-primary-light: #{$color-primary-400};
+  --color-primary-dark: #{$color-primary-900};
+  --color-primary-contrast: #{$color-white};
+
+  // Secondary
+  --color-secondary-main: #{$color-secondary-800};
+  --color-secondary-light: #{$color-secondary-400};
+  --color-secondary-dark: #{$color-secondary-900};
+  --color-secondary-contrast: #{$color-white};
+
+  // Status Colors
+  --color-error-main: #{$color-error};
+  --color-success-main: #{$color-success};
+  --color-warning-main: #{$color-warning};
+  --color-info-main: #{$color-info};
+
+  // Grey Scale (from tertiary)
+  --color-grey-50: #{$color-tertiary-50};
+  --color-grey-100: #{$color-tertiary-100};
+  --color-grey-200: #{$color-tertiary-200};
+  --color-grey-300: #{$color-tertiary-300};
+  --color-grey-400: #{$color-tertiary-400};
+  --color-grey-500: #{$color-tertiary-500};
+  --color-grey-600: #{$color-tertiary-600};
+  --color-grey-700: #{$color-tertiary-700};
+  --color-grey-800: #{$color-tertiary-800};
+  --color-grey-900: #{$color-tertiary-900};
+
+  // Base
+  --color-white: #{$color-white};
+  --color-black: #{$color-black};
+
+  // Background & Surface
+  --color-background-default: #{$color-white};
+  --color-background-paper: #{$color-tertiary-50};
+  --color-text-primary: #{$color-tertiary-900};
+  --color-text-secondary: #{$color-tertiary-600};
+  --color-text-disabled: #{$color-tertiary-400};
+  --color-divider: #{$color-tertiary-200};
+}
