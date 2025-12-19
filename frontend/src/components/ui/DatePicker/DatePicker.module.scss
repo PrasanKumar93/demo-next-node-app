@@ -3,8 +3,16 @@
 .date-picker-wrapper {
   width: 100%;
 
+  // ===========================================
+  // TYPOGRAPHY OVERRIDES
+  // Use CSS variables from typography.scss
+  // ===========================================
+
   // Label styling
   :global(.MuiInputLabel-root) {
+    font-family: var(--font-family-primary);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-md);
     color: var(--color-text-secondary);
 
     &:global(.Mui-focused) {
@@ -20,8 +28,14 @@
     }
   }
 
+  // ===========================================
+  // COLOR OVERRIDES
+  // Use CSS variables from _colors.scss
+  // ===========================================
+
   // Outlined input styling
   :global(.MuiOutlinedInput-root) {
+    font-family: var(--font-family-primary);
     color: var(--color-text-primary);
     background-color: var(--color-background-default);
     border-radius: $radius-lg;
@@ -59,6 +73,10 @@
 
   // Input text
   :global(.MuiOutlinedInput-input) {
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
     color: var(--color-text-primary);
     padding: $spacing-3 $spacing-3; // 12px vertical & horizontal
     height: auto;
@@ -78,7 +96,7 @@
   :global(.MuiInputBase-sizeSmall) {
     :global(.MuiOutlinedInput-input) {
       padding: $spacing-2 $spacing-3; // 8px vertical, 12px horizontal
-      font-size: 0.875rem; // 14px
+      font-size: var(--font-size-md); // 14px
     }
   }
 
@@ -114,6 +132,9 @@
 
   // Helper text
   :global(.MuiFormHelperText-root) {
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
     color: var(--color-text-secondary);
 
     &:global(.Mui-error) {
@@ -122,19 +143,25 @@
   }
 }
 
-// Calendar popup (rendered in portal, needs global scope)
+// ===========================================
+// CALENDAR POPUP (rendered in portal, needs global scope)
 // Note: These are truly global as MUI renders the calendar in a portal outside the component
+// ===========================================
 :global(.MuiDateCalendar-root) {
+  font-family: var(--font-family-primary);
   background-color: var(--color-background-paper);
   color: var(--color-text-primary);
 }
 
 // Calendar header
 :global(.MuiPickersCalendarHeader-root) {
+  font-family: var(--font-family-primary);
   color: var(--color-text-primary);
 }
 
 :global(.MuiPickersCalendarHeader-label) {
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
 }
 
@@ -153,11 +180,16 @@
 
 // Day of week headers
 :global(.MuiDayCalendar-weekDayLabel) {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   color: var(--color-text-secondary);
 }
 
 // Day cells
 :global(.MuiPickersDay-root) {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-md);
   color: var(--color-text-primary);
   background-color: transparent;
 
@@ -186,6 +218,8 @@
 // Year picker
 :global(.MuiYearCalendar-root) {
   :global(.MuiPickersYear-yearButton) {
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-md);
     color: var(--color-text-primary);
 
     &:hover {
@@ -206,6 +240,8 @@
 // Month picker
 :global(.MuiMonthCalendar-root) {
   :global(.MuiPickersMonth-monthButton) {
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-md);
     color: var(--color-text-primary);
 
     &:hover {

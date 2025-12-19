@@ -6,13 +6,21 @@ import { ReactNode, useMemo } from 'react';
 
 /**
  * Minimal MUI Theme configuration.
- * Colors are handled via CSS variables in SCSS - see _colors.scss
- * MUI component colors are overridden in their respective wrapper components.
+ *
+ * STYLING ARCHITECTURE:
+ * - Colors: Defined in _colors.scss, exposed as CSS vars (--color-*), overridden in component .module.scss files
+ * - Typography: Defined in typography.scss & _fonts.scss, exposed as CSS vars (--font-*), overridden in component .module.scss files
+ *
+ * Each MUI wrapper component uses :global() selectors to override MUI's default styles with our CSS variables.
+ * Example: :global(.MuiButton-root) { font-family: var(--font-family-primary); }
+ *
+ * NOTE: fontFamily here must match $font-family-primary in typography.scss for consistency
  */
 const createAppTheme = () =>
     createTheme({
         typography: {
-            fontFamily: '"Space Grotesk", "Helvetica", "Arial", sans-serif',
+            // Must stay in sync with $font-family-primary in typography.scss
+            fontFamily: '"Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif',
         },
         shape: {
             borderRadius: 8,

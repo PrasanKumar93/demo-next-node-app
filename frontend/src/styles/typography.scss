@@ -120,6 +120,58 @@ $font-family-mono: "Space Mono", "Fira Code", monospace;
 }
 
 // ===========================================
+// CSS CUSTOM PROPERTIES FOR TYPOGRAPHY
+// Enables runtime access from JS and component SCSS
+// ===========================================
+:root {
+  // Font Families
+  --font-family-primary: #{$font-family-primary};
+  --font-family-mono: #{$font-family-mono};
+
+  // Font Sizes
+  --font-size-xs: #{$font-size-xs};
+  --font-size-sm: #{$font-size-sm};
+  --font-size-md: #{$font-size-md};
+  --font-size-base: #{$font-size-base};
+  --font-size-lg: #{$font-size-lg};
+  --font-size-xl: #{$font-size-xl};
+  --font-size-2xl: #{$font-size-2xl};
+  --font-size-3xl: #{$font-size-3xl};
+  --font-size-4xl: #{$font-size-4xl};
+  --font-size-5xl: #{$font-size-5xl};
+  --font-size-6xl: #{$font-size-6xl};
+  --font-size-7xl: #{$font-size-7xl};
+  --font-size-8xl: #{$font-size-8xl};
+
+  // Font Weights
+  --font-weight-thin: #{$font-weight-thin};
+  --font-weight-extralight: #{$font-weight-extralight};
+  --font-weight-light: #{$font-weight-light};
+  --font-weight-regular: #{$font-weight-regular};
+  --font-weight-medium: #{$font-weight-medium};
+  --font-weight-semibold: #{$font-weight-semibold};
+  --font-weight-bold: #{$font-weight-bold};
+  --font-weight-extrabold: #{$font-weight-extrabold};
+  --font-weight-black: #{$font-weight-black};
+
+  // Line Heights
+  --line-height-none: #{$line-height-none};
+  --line-height-tight: #{$line-height-tight};
+  --line-height-snug: #{$line-height-snug};
+  --line-height-normal: #{$line-height-normal};
+  --line-height-relaxed: #{$line-height-relaxed};
+  --line-height-loose: #{$line-height-loose};
+
+  // Letter Spacing
+  --letter-spacing-tighter: #{$letter-spacing-tighter};
+  --letter-spacing-tight: #{$letter-spacing-tight};
+  --letter-spacing-normal: #{$letter-spacing-normal};
+  --letter-spacing-wide: #{$letter-spacing-wide};
+  --letter-spacing-wider: #{$letter-spacing-wider};
+  --letter-spacing-widest: #{$letter-spacing-widest};
+}
+
+// ===========================================
 // BASE TYPOGRAPHY RESET
 // ===========================================
 body {

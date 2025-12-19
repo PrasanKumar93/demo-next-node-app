@@ -3,6 +3,30 @@
 .button-wrapper {
   display: inline-block;
 
+  // ===========================================
+  // TYPOGRAPHY OVERRIDES (base for all buttons)
+  // ===========================================
+  :global(.MuiButton-root) {
+    font-family: var(--font-family-primary);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-wide);
+  }
+
+  // Size variants
+  :global(.MuiButton-sizeSmall) {
+    font-size: var(--font-size-sm);
+  }
+
+  :global(.MuiButton-sizeLarge) {
+    font-size: var(--font-size-base);
+  }
+
+  // ===========================================
+  // COLOR OVERRIDES
+  // ===========================================
+
   // Primary contained button
   :global(.MuiButton-containedPrimary) {
     background-color: var(--color-primary-main);
