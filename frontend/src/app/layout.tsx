@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import "./globals.scss";
 import ThemeProvider from "@/components/ui/ThemeProvider/ThemeProvider";
+import { Header, Footer } from "@/components/layout";
 
 const metadata: Metadata = {
-  title: "Demo Next Node App",
+  title: "StudentHub",
   description: "Student management application",
 };
 
@@ -17,7 +18,13 @@ const RootLayout = ({
     <html lang="en">
       <body>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <div className="app-container">
+              <Header />
+              <main className="main-content">{children}</main>
+              <Footer />
+            </div>
+          </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
     </html>
