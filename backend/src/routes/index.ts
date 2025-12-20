@@ -43,6 +43,6 @@ router.post("/health", handleRoute(getHealth));
 router.post("/createStudent", handleRoute(createStudent));
 
 // GET /api/getAllStudents
-router.get("/getAllStudents", handleRoute(getAllStudents));
+router.post("/getAllStudents", handleRoute(getAllStudents));
 
 export default router;
