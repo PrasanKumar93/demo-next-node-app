@@ -23,7 +23,7 @@ const Header = () => {
                         Dashboard
                     </Link>
                     <Link href="/examples" className={styles.navLink}>
-                        Examples
+                        Components
                     </Link>
                 </nav>
             </div>
