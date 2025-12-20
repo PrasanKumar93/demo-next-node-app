@@ -1,7 +1,8 @@
 // Layout with sidebar
 .layout {
   display: flex;
-  min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
 }
 
 .sidebar {
@@ -15,10 +16,8 @@
   color: var(--color-white);
   display: flex;
   flex-direction: column;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow-y: auto;
+  height: 100%;
+  overflow: hidden;
 }
 
 .sidebarHeader {
@@ -44,6 +43,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-1);
+  overflow-y: auto;
+  min-height: 0; // Important for flex children to scroll properly
 }
 
 .navItem {
@@ -84,7 +85,7 @@
 .content {
   flex: 1;
   background: var(--color-tertiary-50);
-  min-height: 100vh;
+  height: 100%;
   overflow-y: auto;
 }
 
@@ -100,7 +101,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  height: 100%;
   padding: var(--spacing-8);
 }
 
