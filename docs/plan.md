@@ -129,11 +129,10 @@ src/components/ui/
 
 **Deliverables**:
 
-- `Header` — logo, navigation links
-- `Footer` — simple footer
+- `Header` — logo, navigation links (Home, Dashboard)
+- `Footer` — simple footer (with company name copyright)
 - SCSS modules for layout components
 - Update `layout.tsx` to use Header/Footer
-- Basic home page (`/`)
 
 **Files**:
 
@@ -147,8 +146,8 @@ src/
 │   └── index.ts
 └── app/
     ├── layout.tsx      → uses Header, Footer
-    ├── page.tsx        → home with welcome + nav
-    └── page.module.scss
+    ├── page.tsx        → existing home page
+
 ```
 
 **Commit**: `feat(frontend): layout components and home page`
@@ -157,7 +156,7 @@ src/
 
 ## Phase 5: Student Registration Form
 
-**Goal**: Build student form component
+**Goal**: Build student form page `students/new` with form `StudentRegistrationForm`
 
 **Deliverables**:
 
@@ -168,13 +167,15 @@ src/
 - SCSS module for form styling
 - Tests for form
 
-**Fields**:
+**Fields**: (check schema)
 
 - firstName, lastName, email
 - dateOfBirth, studentId, phone
 - address (street, city, state, zipCode, country)
 - enrollmentDate, course, department, year
 - guardianName, guardianPhone (optional)
+
+- form submit call API `createStudent` in frontend/src/lib/api.ts and show alert message with success or error
 
 **Files**:
 

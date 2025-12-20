@@ -7,4 +7,5 @@ const MongoDocumentSchema = z.object({
 
 type MongoDocument = z.infer<typeof MongoDocumentSchema>;
 
-export { MongoDocumentSchema, MongoDocument };
+export { MongoDocumentSchema };
+export type { MongoDocument };

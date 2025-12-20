@@ -11,3 +11,5 @@
 - No Emojis in messages while generating code
 
 - file naming conventions as small letters separated by hyphen
+
+- export types separately like `export type`, also import too

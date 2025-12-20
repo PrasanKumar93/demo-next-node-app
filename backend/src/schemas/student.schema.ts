@@ -28,4 +28,5 @@ const StudentSchema = z.object({
 
 type Student = z.infer<typeof StudentSchema>;
 
-export { StudentSchema, Student };
+export { StudentSchema };
+export type { Student };
