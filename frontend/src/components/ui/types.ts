@@ -42,7 +42,7 @@ export interface BaseFieldProps {
   fullWidth?: boolean;
 
   /** Field size variant */
-  size?: 'small' | 'medium';
+  size?: "small" | "medium";
 
   /** Additional CSS class name */
   className?: string;
@@ -65,7 +65,7 @@ export interface TextInputProps extends BaseFieldProps {
   rows?: number;
 
   /** Input type (text, password) */
-  type?: 'text' | 'password';
+  type?: "text" | "password";
 }
 
 /**
@@ -124,12 +124,16 @@ export interface SelectOption {
 /**
  * Props for Select component
  */
-export interface SelectProps extends Omit<BaseFieldProps, 'value' | 'onChange'> {
+export interface SelectProps
+  extends Omit<BaseFieldProps, "value" | "onChange"> {
   /** Current selected value(s) */
   value: string | number | (string | number)[];
 
   /** Change handler for select */
-  onChange: (name: string, value: string | number | (string | number)[]) => void;
+  onChange: (
+    name: string,
+    value: string | number | (string | number)[]
+  ) => void;
 
   /** Available options */
   options: SelectOption[];
@@ -141,7 +145,8 @@ export interface SelectProps extends Omit<BaseFieldProps, 'value' | 'onChange'> 
 /**
  * Props for DatePicker component
  */
-export interface DatePickerProps extends Omit<BaseFieldProps, 'value' | 'onChange'> {
+export interface DatePickerProps
+  extends Omit<BaseFieldProps, "value" | "onChange"> {
   /** Current date value (ISO string or Date object) */
   value: string | Date | null;
 
@@ -161,12 +166,18 @@ export interface DatePickerProps extends Omit<BaseFieldProps, 'value' | 'onChang
 /**
  * Button variant types
  */
-export type ButtonVariant = 'contained' | 'outlined' | 'text';
+export type ButtonVariant = "contained" | "outlined" | "text";
 
 /**
  * Button color types
  */
-export type ButtonColor = 'primary' | 'secondary' | 'error' | 'success' | 'warning' | 'info';
+export type ButtonColor =
+  | "primary"
+  | "secondary"
+  | "error"
+  | "success"
+  | "warning"
+  | "info";
 
 /**
  * Props for Button component
@@ -185,7 +196,7 @@ export interface ButtonProps {
   color?: ButtonColor;
 
   /** Button type attribute */
-  type?: 'button' | 'submit' | 'reset';
+  type?: "button" | "submit" | "reset";
 
   /** Whether button is disabled */
   disabled?: boolean;
@@ -197,7 +208,7 @@ export interface ButtonProps {
   fullWidth?: boolean;
 
   /** Button size */
-  size?: 'small' | 'medium' | 'large';
+  size?: "small" | "medium" | "large";
 
   /** Additional CSS class name */
   className?: string;
@@ -208,4 +219,3 @@ export interface ButtonProps {
   /** End icon element */
   endIcon?: React.ReactNode;
 }
-

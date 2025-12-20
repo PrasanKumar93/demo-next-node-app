@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
 import {
     TextInput,
     EmailInput,
@@ -11,251 +10,31 @@ import {
     Button,
     Toast,
 } from '@/components/ui';
-import type { ToastType } from '@/components/ui';
-import { CreateStudentSchema } from '@/lib/validators';
-import { createStudent } from '@/lib/api';
-import type { CreateStudentInput } from '@/types';
+import { DEPARTMENT_OPTIONS, COUNTRY_OPTIONS, TOAST_CONFIG } from './constants';
+import { useStudentRegistrationForm } from './hooks';
 import styles from './StudentRegistrationForm.module.scss';
-
-// Department options
-const departmentOptions = [
-    { value: 'computer-science', label: 'Computer Science' },
-    { value: 'electrical-engineering', label: 'Electrical Engineering' },
-    { value: 'mechanical-engineering', label: 'Mechanical Engineering' },
-    { value: 'civil-engineering', label: 'Civil Engineering' },
-    { value: 'business', label: 'Business Administration' },
-    { value: 'mathematics', label: 'Mathematics' },
-    { value: 'physics', label: 'Physics' },
-    { value: 'chemistry', label: 'Chemistry' },
-    { value: 'biology', label: 'Biology' },
-    { value: 'arts', label: 'Arts & Humanities' },
-];
-
-// Country options
-const countryOptions = [
-    { value: 'India', label: 'India' },
-    { value: 'USA', label: 'United States' },
-    { value: 'Canada', label: 'Canada' },
-    { value: 'UK', label: 'United Kingdom' },
-    { value: 'Australia', label: 'Australia' },
-    { value: 'Germany', label: 'Germany' },
-    { value: 'France', label: 'France' },
-    { value: 'China', label: 'China' },
-    { value: 'Japan', label: 'Japan' },
-    { value: 'Other', label: 'Other' },
-];
-
-// Form field errors type
-type FormErrors = {
-    [key: string]: string | undefined;
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    dateOfBirth?: string;
-    studentId?: string;
-    phone?: string;
-    street?: string;
-    city?: string;
-    state?: string;
-    zipCode?: string;
-    country?: string;
-    enrollmentDate?: string;
-    course?: string;
-    department?: string;
-    year?: string;
-    guardianName?: string;
-    guardianPhone?: string;
-};
-
-// Initial form state
-const initialFormState = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    dateOfBirth: null as string | null,
-    studentId: '',
-    phone: '',
-    street: '',
-    city: '',
-    state: '',
-    zipCode: '',
-    country: 'India',
-    enrollmentDate: null as string | null,
-    course: '',
-    department: '',
-    year: '' as number | '',
-    guardianName: '',
-    guardianPhone: '',
-};
-
-type FormState = typeof initialFormState;
 
 /**
  * StudentRegistrationForm Component
- * 
+ *
  * A comprehensive form for registering new students.
  * Features client-side validation with Zod and integration with the backend API.
  */
 const StudentRegistrationForm = () => {
-    const [formData, setFormData] = useState<FormState>(initialFormState);
-    const [errors, setErrors] = useState<FormErrors>({});
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [toastVisible, setToastVisible] = useState(false);
-    const [toastType, setToastType] = useState<ToastType>('success');
-    const [toastMessage, setToastMessage] = useState('');
-    const [resetKey, setResetKey] = useState(0);
-
-    // Show toast notification
-    const showToast = (type: ToastType, message: string) => {
-        setToastType(type);
-        setToastMessage(message);
-        setToastVisible(true);
-    };
-
-    // Hide toast notification
-    const hideToast = () => {
-        setToastVisible(false);
-    };
-
-    // Generic field change handler
-    const handleChange = (name: string, value: string | number | null) => {
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
-
-        // Clear error for this field when user starts typing
-        if (errors[name]) {
-            setErrors((prev) => ({
-                ...prev,
-                [name]: undefined,
-            }));
-        }
-    };
-
-    // Handler for Select components (supports array values for multi-select)
-    const handleSelectChange = (name: string, value: string | number | (string | number)[]) => {
-        // For our form, we only use single-select, so extract string value
-        const singleValue = Array.isArray(value) ? value[0] : value;
-        handleChange(name, singleValue as string);
-    };
-
-    // Validate form data using Zod schema
-    const validateForm = (): boolean => {
-        // Build the data object for validation
-        const dataToValidate: CreateStudentInput = {
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            email: formData.email,
-            dateOfBirth: formData.dateOfBirth ? new Date(formData.dateOfBirth) : new Date(),
-            studentId: formData.studentId,
-            phone: formData.phone,
-            address: {
-                street: formData.street,
-                city: formData.city,
-                state: formData.state,
-                zipCode: formData.zipCode,
-                country: formData.country,
-            },
-            enrollmentDate: formData.enrollmentDate ? new Date(formData.enrollmentDate) : new Date(),
-            course: formData.course,
-            department: formData.department,
-            year: typeof formData.year === 'number' ? formData.year : 1,
-            guardianName: formData.guardianName || undefined,
-            guardianPhone: formData.guardianPhone || undefined,
-        };
-
-        const result = CreateStudentSchema.safeParse(dataToValidate);
-
-        if (!result.success) {
-            const newErrors: FormErrors = {};
-
-            result.error.issues.forEach((issue) => {
-                const path = issue.path.join('.');
-                // Map nested address fields to flat field names
-                if (path.startsWith('address.')) {
-                    const addressField = path.replace('address.', '');
-                    newErrors[addressField] = issue.message;
-                } else {
-                    newErrors[path] = issue.message;
-                }
-            });
-
-            setErrors(newErrors);
-            return false;
-        }
-
-        setErrors({});
-        return true;
-    };
-
-    // Handle form submission
-    const handleSubmit = async (e: FormEvent) => {
-        e.preventDefault();
-
-        // Hide any existing toast
-        hideToast();
-
-        // Validate form
-        if (!validateForm()) {
-            return;
-        }
-
-        setIsSubmitting(true);
-
-        try {
-            // Build the student data object
-            const studentData: CreateStudentInput = {
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                email: formData.email,
-                dateOfBirth: new Date(formData.dateOfBirth!),
-                studentId: formData.studentId,
-                phone: formData.phone,
-                address: {
-                    street: formData.street,
-                    city: formData.city,
-                    state: formData.state,
-                    zipCode: formData.zipCode,
-                    country: formData.country,
-                },
-                enrollmentDate: new Date(formData.enrollmentDate!),
-                course: formData.course,
-                department: formData.department,
-                year: formData.year as number,
-                guardianName: formData.guardianName || undefined,
-                guardianPhone: formData.guardianPhone || undefined,
-            };
-
-            // Call API
-            const createdStudent = await createStudent(studentData);
-
-            // Show success toast
-            showToast('success', `Student "${createdStudent.firstName} ${createdStudent.lastName}" has been registered successfully!`);
-
-            // Reset form on success
-            setFormData(initialFormState);
-            setErrors({});
-            setResetKey((prev) => prev + 1);
-        } catch (error) {
-            // Show error toast
-            if (error instanceof Error) {
-                showToast('error', error.message);
-            } else {
-                showToast('error', 'An unexpected error occurred. Please try again.');
-            }
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
-
-    // Handle form reset
-    const handleReset = () => {
-        setFormData(initialFormState);
-        setErrors({});
-        hideToast();
-        setResetKey((prev) => prev + 1);
-    };
+    const {
+        formData,
+        errors,
+        isSubmitting,
+        resetKey,
+        toastVisible,
+        toastType,
+        toastMessage,
+        handleChange,
+        handleSelectChange,
+        handleSubmit,
+        handleReset,
+        hideToast,
+    } = useStudentRegistrationForm();
 
     return (
         <>
@@ -265,14 +44,16 @@ const StudentRegistrationForm = () => {
                 type={toastType}
                 isVisible={toastVisible}
                 onDismiss={hideToast}
-                position="top-right"
-                duration={6000}
+                position={TOAST_CONFIG.position}
+                duration={TOAST_CONFIG.duration}
             />
 
             <form className={styles.form} onSubmit={handleSubmit} noValidate>
                 <div className={styles.header}>
                     <h1 className={styles.title}>Student Registration</h1>
-                    <p className={styles.subtitle}>Please fill out all required fields to register a new student.</p>
+                    <p className={styles.subtitle}>
+                        Please fill out all required fields to register a new student.
+                    </p>
                 </div>
 
                 {/* Personal Information Section */}
@@ -393,7 +174,7 @@ const StudentRegistrationForm = () => {
                             value={formData.country}
                             onChange={handleSelectChange}
                             error={errors.country}
-                            options={countryOptions}
+                            options={[...COUNTRY_OPTIONS]}
                             required
                         />
                     </div>
@@ -428,7 +209,7 @@ const StudentRegistrationForm = () => {
                             value={formData.department}
                             onChange={handleSelectChange}
                             error={errors.department}
-                            options={departmentOptions}
+                            options={[...DEPARTMENT_OPTIONS]}
                             required
                             placeholder="Select department"
                         />
@@ -500,4 +281,3 @@ const StudentRegistrationForm = () => {
 };
 
 export default StudentRegistrationForm;
-

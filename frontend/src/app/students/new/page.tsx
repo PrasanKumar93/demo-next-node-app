@@ -1,4 +1,4 @@
-import { StudentRegistrationForm } from '@/components/business';
+import { StudentRegistrationForm } from '@/components/business/StudentRegistrationForm';
 import styles from './page.module.scss';
 
 export const metadata = {
