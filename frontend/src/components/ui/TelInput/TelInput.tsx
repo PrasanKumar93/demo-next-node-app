@@ -36,6 +36,7 @@ const TelInput = ({
     size = 'medium',
     className,
     countryCode,
+    maxLength,
 }: TelInputProps) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         onChange(name, event.target.value);
@@ -64,6 +65,9 @@ const TelInput = ({
                             ),
                         }
                         : undefined,
+                    htmlInput: {
+                        maxLength,
+                    },
                 }}
             />
         </div>

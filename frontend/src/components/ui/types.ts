@@ -82,6 +82,9 @@ export interface EmailInputProps extends BaseFieldProps {
 export interface TelInputProps extends BaseFieldProps {
   /** Country code prefix (e.g., "+1", "+91") */
   countryCode?: string;
+
+  /** Maximum character length */
+  maxLength?: number;
 }
 
 /**
