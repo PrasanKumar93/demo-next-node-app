@@ -19,11 +19,11 @@ const Header = () => {
                 </Link>
 
                 <nav className={styles.nav}>
-                    <Link href="/" className={styles.navLink}>
-                        Home
-                    </Link>
-                    <Link href="/dashboard" className={styles.navLink}>
+                    <Link href="/students" className={styles.navLink}>
                         Dashboard
+                    </Link>
+                    <Link href="/examples" className={styles.navLink}>
+                        Examples
                     </Link>
                 </nav>
             </div>
