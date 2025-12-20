@@ -9,7 +9,9 @@ import {
     Select,
     DatePicker,
     Button,
+    Toast,
 } from '@/components/ui';
+import type { ToastType } from '@/components/ui';
 import { CreateStudentSchema } from '@/lib/validators';
 import { createStudent } from '@/lib/api';
 import type { CreateStudentInput } from '@/types';
@@ -98,8 +100,22 @@ const StudentRegistrationForm = () => {
     const [formData, setFormData] = useState<FormState>(initialFormState);
     const [errors, setErrors] = useState<FormErrors>({});
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-    const [submitMessage, setSubmitMessage] = useState('');
+    const [toastVisible, setToastVisible] = useState(false);
+    const [toastType, setToastType] = useState<ToastType>('success');
+    const [toastMessage, setToastMessage] = useState('');
+    const [resetKey, setResetKey] = useState(0);
+
+    // Show toast notification
+    const showToast = (type: ToastType, message: string) => {
+        setToastType(type);
+        setToastMessage(message);
+        setToastVisible(true);
+    };
+
+    // Hide toast notification
+    const hideToast = () => {
+        setToastVisible(false);
+    };
 
     // Generic field change handler
     const handleChange = (name: string, value: string | number | null) => {
@@ -177,9 +193,8 @@ const StudentRegistrationForm = () => {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
-        // Clear previous status
-        setSubmitStatus('idle');
-        setSubmitMessage('');
+        // Hide any existing toast
+        hideToast();
 
         // Validate form
         if (!validateForm()) {
@@ -215,18 +230,19 @@ const StudentRegistrationForm = () => {
             // Call API
             const createdStudent = await createStudent(studentData);
 
-            setSubmitStatus('success');
-            setSubmitMessage(`Student "${createdStudent.firstName} ${createdStudent.lastName}" has been registered successfully!`);
+            // Show success toast
+            showToast('success', `Student "${createdStudent.firstName} ${createdStudent.lastName}" has been registered successfully!`);
 
             // Reset form on success
             setFormData(initialFormState);
             setErrors({});
+            setResetKey((prev) => prev + 1);
         } catch (error) {
-            setSubmitStatus('error');
+            // Show error toast
             if (error instanceof Error) {
-                setSubmitMessage(error.message);
+                showToast('error', error.message);
             } else {
-                setSubmitMessage('An unexpected error occurred. Please try again.');
+                showToast('error', 'An unexpected error occurred. Please try again.');
             }
         } finally {
             setIsSubmitting(false);
@@ -237,243 +253,249 @@ const StudentRegistrationForm = () => {
     const handleReset = () => {
         setFormData(initialFormState);
         setErrors({});
-        setSubmitStatus('idle');
-        setSubmitMessage('');
+        hideToast();
+        setResetKey((prev) => prev + 1);
     };
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit} noValidate>
-            <div className={styles.header}>
-                <h1 className={styles.title}>Student Registration</h1>
-                <p className={styles.subtitle}>Please fill out all required fields to register a new student.</p>
-            </div>
+        <>
+            {/* Toast Notification */}
+            <Toast
+                message={toastMessage}
+                type={toastType}
+                isVisible={toastVisible}
+                onDismiss={hideToast}
+                position="top-right"
+                duration={6000}
+            />
 
-            {/* Status Alert */}
-            {submitStatus !== 'idle' && (
-                <div className={`${styles.alert} ${styles[submitStatus]}`} role="alert">
-                    {submitMessage}
+            <form className={styles.form} onSubmit={handleSubmit} noValidate>
+                <div className={styles.header}>
+                    <h1 className={styles.title}>Student Registration</h1>
+                    <p className={styles.subtitle}>Please fill out all required fields to register a new student.</p>
                 </div>
-            )}
 
-            {/* Personal Information Section */}
-            <fieldset className={styles.section}>
-                <legend className={styles.sectionTitle}>Personal Information</legend>
-                <div className={styles.row}>
-                    <TextInput
-                        name="firstName"
-                        label="First Name"
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        error={errors.firstName}
-                        required
-                        placeholder="Enter first name"
-                    />
-                    <TextInput
-                        name="lastName"
-                        label="Last Name"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        error={errors.lastName}
-                        required
-                        placeholder="Enter last name"
-                    />
-                </div>
-                <div className={styles.row}>
-                    <EmailInput
-                        name="email"
-                        label="Email Address"
-                        value={formData.email}
-                        onChange={handleChange}
-                        error={errors.email}
-                        required
-                        placeholder="student@university.edu"
-                    />
-                    <DatePicker
-                        name="dateOfBirth"
-                        label="Date of Birth"
-                        value={formData.dateOfBirth}
-                        onChange={handleChange}
-                        error={errors.dateOfBirth}
-                        required
-                        maxDate={new Date().toISOString()}
-                    />
-                </div>
-                <div className={styles.row}>
-                    <TextInput
-                        name="studentId"
-                        label="Student ID"
-                        value={formData.studentId}
-                        onChange={handleChange}
-                        error={errors.studentId}
-                        required
-                        placeholder="e.g., STU-2024-001"
-                    />
-                    <TelInput
-                        name="phone"
-                        label="Phone Number"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        error={errors.phone}
-                        required
-                        placeholder="Enter phone number"
-                        countryCode="+91"
-                        maxLength={10}
-                    />
-                </div>
-            </fieldset>
+                {/* Personal Information Section */}
+                <fieldset className={styles.section}>
+                    <legend className={styles.sectionTitle}>Personal Information</legend>
+                    <div className={styles.row}>
+                        <TextInput
+                            name="firstName"
+                            label="First Name"
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            error={errors.firstName}
+                            required
+                            placeholder="Enter first name"
+                        />
+                        <TextInput
+                            name="lastName"
+                            label="Last Name"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            error={errors.lastName}
+                            required
+                            placeholder="Enter last name"
+                        />
+                    </div>
+                    <div className={styles.row}>
+                        <EmailInput
+                            name="email"
+                            label="Email Address"
+                            value={formData.email}
+                            onChange={handleChange}
+                            error={errors.email}
+                            required
+                            placeholder="student@university.edu"
+                        />
+                        <DatePicker
+                            key={`dateOfBirth-${resetKey}`}
+                            name="dateOfBirth"
+                            label="Date of Birth"
+                            value={formData.dateOfBirth}
+                            onChange={handleChange}
+                            error={errors.dateOfBirth}
+                            required
+                            maxDate={new Date().toISOString()}
+                        />
+                    </div>
+                    <div className={styles.row}>
+                        <TextInput
+                            name="studentId"
+                            label="Student ID"
+                            value={formData.studentId}
+                            onChange={handleChange}
+                            error={errors.studentId}
+                            required
+                            placeholder="e.g., STU-2024-001"
+                        />
+                        <TelInput
+                            name="phone"
+                            label="Phone Number"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            error={errors.phone}
+                            required
+                            placeholder="Enter phone number"
+                            countryCode="+91"
+                            maxLength={10}
+                        />
+                    </div>
+                </fieldset>
 
-            {/* Address Section */}
-            <fieldset className={styles.section}>
-                <legend className={styles.sectionTitle}>Address</legend>
-                <div className={styles.row}>
-                    <TextInput
-                        name="street"
-                        label="Street Address"
-                        value={formData.street}
-                        onChange={handleChange}
-                        error={errors.street}
-                        required
-                        placeholder="123 Main Street"
-                    />
-                </div>
-                <div className={styles.row}>
-                    <TextInput
-                        name="city"
-                        label="City"
-                        value={formData.city}
-                        onChange={handleChange}
-                        error={errors.city}
-                        required
-                        placeholder="Enter city"
-                    />
-                    <TextInput
-                        name="state"
-                        label="State / Province"
-                        value={formData.state}
-                        onChange={handleChange}
-                        error={errors.state}
-                        required
-                        placeholder="Enter state"
-                    />
-                </div>
-                <div className={styles.row}>
-                    <TextInput
-                        name="zipCode"
-                        label="ZIP / Postal Code"
-                        value={formData.zipCode}
-                        onChange={handleChange}
-                        error={errors.zipCode}
-                        required
-                        placeholder="12345"
-                    />
-                    <Select
-                        name="country"
-                        label="Country"
-                        value={formData.country}
-                        onChange={handleSelectChange}
-                        error={errors.country}
-                        options={countryOptions}
-                        required
-                    />
-                </div>
-            </fieldset>
+                {/* Address Section */}
+                <fieldset className={styles.section}>
+                    <legend className={styles.sectionTitle}>Address</legend>
+                    <div className={styles.row}>
+                        <TextInput
+                            name="street"
+                            label="Street Address"
+                            value={formData.street}
+                            onChange={handleChange}
+                            error={errors.street}
+                            required
+                            placeholder="123 Main Street"
+                        />
+                    </div>
+                    <div className={styles.row}>
+                        <TextInput
+                            name="city"
+                            label="City"
+                            value={formData.city}
+                            onChange={handleChange}
+                            error={errors.city}
+                            required
+                            placeholder="Enter city"
+                        />
+                        <TextInput
+                            name="state"
+                            label="State / Province"
+                            value={formData.state}
+                            onChange={handleChange}
+                            error={errors.state}
+                            required
+                            placeholder="Enter state"
+                        />
+                    </div>
+                    <div className={styles.row}>
+                        <TextInput
+                            name="zipCode"
+                            label="ZIP / Postal Code"
+                            value={formData.zipCode}
+                            onChange={handleChange}
+                            error={errors.zipCode}
+                            required
+                            placeholder="12345"
+                        />
+                        <Select
+                            name="country"
+                            label="Country"
+                            value={formData.country}
+                            onChange={handleSelectChange}
+                            error={errors.country}
+                            options={countryOptions}
+                            required
+                        />
+                    </div>
+                </fieldset>
 
-            {/* Academic Information Section */}
-            <fieldset className={styles.section}>
-                <legend className={styles.sectionTitle}>Academic Information</legend>
-                <div className={styles.row}>
-                    <DatePicker
-                        name="enrollmentDate"
-                        label="Enrollment Date"
-                        value={formData.enrollmentDate}
-                        onChange={handleChange}
-                        error={errors.enrollmentDate}
-                        required
-                    />
-                    <TextInput
-                        name="course"
-                        label="Course / Program"
-                        value={formData.course}
-                        onChange={handleChange}
-                        error={errors.course}
-                        required
-                        placeholder="e.g., Bachelor of Science"
-                    />
-                </div>
-                <div className={styles.row}>
-                    <Select
-                        name="department"
-                        label="Department"
-                        value={formData.department}
-                        onChange={handleSelectChange}
-                        error={errors.department}
-                        options={departmentOptions}
-                        required
-                        placeholder="Select department"
-                    />
-                    <NumberInput
-                        name="year"
-                        label="Year"
-                        value={formData.year}
-                        onChange={handleChange}
-                        error={errors.year}
-                        required
-                        min={1}
-                        max={6}
-                        placeholder="1-6"
-                    />
-                </div>
-            </fieldset>
+                {/* Academic Information Section */}
+                <fieldset className={styles.section}>
+                    <legend className={styles.sectionTitle}>Academic Information</legend>
+                    <div className={styles.row}>
+                        <DatePicker
+                            name="enrollmentDate"
+                            label="Enrollment Date"
+                            value={formData.enrollmentDate}
+                            onChange={handleChange}
+                            error={errors.enrollmentDate}
+                            required
+                        />
+                        <TextInput
+                            name="course"
+                            label="Course / Program"
+                            value={formData.course}
+                            onChange={handleChange}
+                            error={errors.course}
+                            required
+                            placeholder="e.g., Bachelor of Science"
+                        />
+                    </div>
+                    <div className={styles.row}>
+                        <Select
+                            name="department"
+                            label="Department"
+                            value={formData.department}
+                            onChange={handleSelectChange}
+                            error={errors.department}
+                            options={departmentOptions}
+                            required
+                            placeholder="Select department"
+                        />
+                        <NumberInput
+                            name="year"
+                            label="Year"
+                            value={formData.year}
+                            onChange={handleChange}
+                            error={errors.year}
+                            required
+                            min={1}
+                            max={6}
+                            placeholder="1-6"
+                        />
+                    </div>
+                </fieldset>
 
-            {/* Guardian Information Section (Optional) */}
-            <fieldset className={styles.section}>
-                <legend className={styles.sectionTitle}>
-                    Guardian Information
-                    <span className={styles.optional}>(Optional)</span>
-                </legend>
-                <div className={styles.row}>
-                    <TextInput
-                        name="guardianName"
-                        label="Guardian Name"
-                        value={formData.guardianName}
-                        onChange={handleChange}
-                        error={errors.guardianName}
-                        placeholder="Enter guardian's full name"
-                    />
-                    <TelInput
-                        name="guardianPhone"
-                        label="Guardian Phone"
-                        value={formData.guardianPhone}
-                        onChange={handleChange}
-                        error={errors.guardianPhone}
-                        placeholder="Enter guardian's phone"
-                        countryCode="+91"
-                        maxLength={10}
-                    />
-                </div>
-            </fieldset>
+                {/* Guardian Information Section (Optional) */}
+                <fieldset className={styles.section}>
+                    <legend className={styles.sectionTitle}>
+                        Guardian Information
+                        <span className={styles.optional}>(Optional)</span>
+                    </legend>
+                    <div className={styles.row}>
+                        <TextInput
+                            name="guardianName"
+                            label="Guardian Name"
+                            value={formData.guardianName}
+                            onChange={handleChange}
+                            error={errors.guardianName}
+                            placeholder="Enter guardian's full name"
+                        />
+                        <TelInput
+                            name="guardianPhone"
+                            label="Guardian Phone"
+                            value={formData.guardianPhone}
+                            onChange={handleChange}
+                            error={errors.guardianPhone}
+                            placeholder="Enter guardian's phone"
+                            countryCode="+91"
+                            maxLength={10}
+                        />
+                    </div>
+                </fieldset>
 
-            {/* Form Actions */}
-            <div className={styles.actions}>
-                <Button
-                    type="button"
-                    variant="outlined"
-                    color="secondary"
-                    onClick={handleReset}
-                    disabled={isSubmitting}
-                >
-                    Reset Form
-                </Button>
-                <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    loading={isSubmitting}
-                >
-                    Register Student
-                </Button>
-            </div>
-        </form>
+                {/* Form Actions */}
+                <div className={styles.actions}>
+                    <Button
+                        type="button"
+                        variant="outlined"
+                        color="secondary"
+                        onClick={handleReset}
+                        disabled={isSubmitting}
+                    >
+                        Reset Form
+                    </Button>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        loading={isSubmitting}
+                    >
+                        Register Student
+                    </Button>
+                </div>
+            </form>
+        </>
     );
 };
 

@@ -13,6 +13,10 @@ export { default as DatePicker } from './DatePicker/DatePicker';
 // Actions
 export { default as Button } from './Button/Button';
 
+// Feedback
+export { default as Toast } from './Toast/Toast';
+export type { ToastType, ToastPosition, ToastProps } from './Toast/Toast';
+
 // Theme
 export { default as ThemeProvider } from './ThemeProvider/ThemeProvider';
 

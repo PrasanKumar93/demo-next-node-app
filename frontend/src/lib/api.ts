@@ -7,7 +7,7 @@ import type {
 } from "@/types";
 
 // API base URL - defaults to localhost:3000 for development
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
 // Custom error class for API errors
 class ApiError extends Error {

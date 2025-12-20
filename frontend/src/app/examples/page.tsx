@@ -11,6 +11,7 @@ import NumberInputExample from '@/components/ui/NumberInput/NumberInput.example'
 import SelectExample from '@/components/ui/Select/Select.example';
 import DatePickerExample from '@/components/ui/DatePicker/DatePicker.example';
 import ButtonExample from '@/components/ui/Button/Button.example';
+import ToastExample from '@/components/ui/Toast/Toast.example';
 
 const components = [
     {
@@ -54,6 +55,12 @@ const components = [
         name: 'Button',
         description: 'Button with variants, colors, sizes, and loading state',
         Component: ButtonExample,
+    },
+    {
+        id: 'toast',
+        name: 'Toast',
+        description: 'Toast notifications with types, positions, and auto-dismiss',
+        Component: ToastExample,
     },
 ];
 
