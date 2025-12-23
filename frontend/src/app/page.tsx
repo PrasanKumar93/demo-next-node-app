@@ -8,7 +8,7 @@ const Home = () => {
         <section className={styles.hero}>
           <div className={styles.badge}>
             <span className={styles.badgeIcon}>◈</span>
-            <span>Powered by LangGraph</span>
+            <span>Powered by You</span>
           </div>
 
           <h1 className={styles.title}>
