@@ -235,7 +235,12 @@ const StudentsPage = () => {
         setError(null);
         try {
             const data = await getAllStudents();
-            setStudents(data);
+            if (data?.length) {
+                setStudents(data);
+            }
+            else {
+                setStudents([]);
+            }
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Failed to load students');
         } finally {
