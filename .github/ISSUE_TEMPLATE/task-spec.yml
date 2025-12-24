@@ -1,0 +1,107 @@
+name: Sample Task Specification Form
+description: Capture required details before coding starts
+title: "[TASK]: "
+labels: ["task-spec"]
+assignees:
+  - your-username
+body:
+  - type: textarea
+    id: task_explanation
+    attributes:
+      label: Task explanation
+      description: Describe what needs to be done
+      placeholder: e.g., "Add a Date of Birth (DOB) field to the user registration form on the /register route"
+    validations:
+      required: true
+
+  - type: textarea
+    id: task_validations
+    attributes:
+      label: Task validations
+      description: Describe what validation needs to be done on the task
+      placeholder: |
+        e.g., "- DOB should be a valid date
+        - should be in the past
+        - should be required
+        - must be greater than 18 years old
+        - must be less than 150 years old"
+
+  - type: textarea
+    id: unit_tests
+    attributes:
+      label: Unit Test Cases
+      description: Auto-generated or manually added cases
+      placeholder: |
+        e.g., "- register a user with a valid DOB and check if the user is registered successfully by fetching the user from the database
+        - Validate a user with a DOB that is not valid based on the validations defined"
+
+  - type: textarea
+    id: task_acceptance_criteria
+    attributes:
+      label: Task acceptance criteria
+      description: Describe what acceptance criteria needs to be done on the task
+      placeholder: |
+        e.g., "- The user should be registered successfully with the valid DOB
+        - Invalid DOB (as per validations defined) should not be allowed to register
+        - In frontend design, DOB field must be displayed in dd-mm-yyyy format
+        - The user should be able to login successfully with existing credentials"
+    validations:
+      required: true
+
+  - type: textarea
+    id: task_context_files
+    attributes:
+      label: Task context files
+      description: List any files to be included in the context of LLM to complete the task
+      placeholder: |
+        e.g., "- src/routes/user-routes.ts
+        - src/services/user-service.ts
+        - src/utils/date-utils.ts
+        - src/types/user-types.ts
+        - src/database/connection.ts"
+
+  - type: textarea
+    id: tech_dependencies
+    attributes:
+      label: Tech / Package Dependencies
+      description: Any technical or package dependencies to be used in the task
+      placeholder: e.g., Use existing material design library for frontend design of new Date Picker field, create DateField as a component and use it in the user registration form
+
+  - type: textarea
+    id: security
+    attributes:
+      label: Security & Performance
+      description: Security measures, perf expectations
+      placeholder: e.g., ""
+
+  - type: textarea
+    id: other_business_context
+    attributes:
+      label: Other business context
+      description: Any other business context good for task completion
+      placeholder: e.g., ""
+
+  - type: textarea
+    id: other_notes
+    attributes:
+      label: Other notes
+      description: Any other notes or instructions
+      placeholder: e.g., ""
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Select required
+      options:
+        - label: Task documentation required
+        - label: Task deployment required
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Final Confirmation
+      options:
+        - label: I confirm the spec is correct and ready for development. (Good context now means less time spent in code review later :)
+    validations:
+      required: true
