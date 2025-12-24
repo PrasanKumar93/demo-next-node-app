@@ -22,3 +22,19 @@ const NewStudentPage = () => {
 
 export default NewStudentPage;
 
+// Assuming there's an input field for firstName, update it as follows
+<input
+  type="text"
+  name="firstName"
+  maxLength={6}
+  pattern="[A-Za-z]*"
+  title="First name must be up to 6 English letters (A–Z)"
+  required
+  onChange={(e) => {
+    const value = e.target.value;
+    if (/^[A-Za-z]*$/.test(value) && value.length <= 6) {
+      // Update state or form value
+    }
+  }}
+/>
+
