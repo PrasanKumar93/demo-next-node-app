@@ -58,7 +58,7 @@ const StudentRegistrationForm = () => {
 
                 {/* Personal Information Section */}
                 <fieldset className={styles.section}>
-                    <legend className={styles.sectionTitle}>Personal Information</legend>
+                    <legend className={styles.sectionTitle}>Student Bio</legend>
                     <div className={styles.row}>
                         <TextInput
                             name="firstName"
