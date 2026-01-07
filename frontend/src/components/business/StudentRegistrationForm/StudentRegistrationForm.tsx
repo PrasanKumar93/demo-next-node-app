@@ -10,7 +10,7 @@ import {
     Button,
     Toast,
 } from '@/components/ui';
-import { DEPARTMENT_OPTIONS, COUNTRY_OPTIONS, TOAST_CONFIG } from './constants';
+import { DEPARTMENT_OPTIONS, COUNTRY_OPTIONS, TOAST_CONFIG, STUDENT_VALIDATION } from './constants';
 import { useStudentRegistrationForm } from './hooks';
 import styles from './StudentRegistrationForm.module.scss';
 
@@ -68,6 +68,7 @@ const StudentRegistrationForm = () => {
                             error={errors.firstName}
                             required
                             placeholder="Enter first name"
+                            maxLength={STUDENT_VALIDATION.FIRST_NAME_MAX_LENGTH}
                         />
                         <TextInput
                             name="lastName"
