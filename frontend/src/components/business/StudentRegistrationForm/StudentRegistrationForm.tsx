@@ -62,7 +62,7 @@ const StudentRegistrationForm = () => {
                     <div className={styles.row}>
                         <TextInput
                             name="firstName"
-                            label="First Name"
+                            label="MaidenName"
                             value={formData.firstName}
                             onChange={handleChange}
                             error={errors.firstName}
