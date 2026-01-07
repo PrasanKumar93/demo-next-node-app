@@ -78,6 +78,7 @@ const StudentRegistrationForm = () => {
                             error={errors.lastName}
                             required
                             placeholder="Enter last name"
+                            maxLength={STUDENT_VALIDATION.LAST_NAME_MAX_LENGTH}
                         />
                     </div>
                     <div className={styles.row}>

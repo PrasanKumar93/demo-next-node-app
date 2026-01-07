@@ -5,7 +5,7 @@ import { STUDENT_VALIDATION } from "../constants/student.validation";
 const StudentSchema = z.object({
   _id: z.any().optional(),
   firstName: z.string().min(1, "First name is required").max(STUDENT_VALIDATION.FIRST_NAME_MAX_LENGTH, `First name must not exceed ${STUDENT_VALIDATION.FIRST_NAME_MAX_LENGTH} characters`),
-  lastName: z.string().min(1, "Last name is required"),
+  lastName: z.string().min(1, "Last name is required").max(STUDENT_VALIDATION.LAST_NAME_MAX_LENGTH, `Last name must not exceed ${STUDENT_VALIDATION.LAST_NAME_MAX_LENGTH} characters`),
   email: z.string().email("Invalid email format"),
   dateOfBirth: z.coerce.date(),
   studentId: z.string().min(1, "Student ID is required"),
