@@ -111,6 +111,7 @@ const StudentRegistrationForm = () => {
                             error={errors.studentId}
                             required
                             placeholder="e.g., STU-2024-001"
+                            maxLength={STUDENT_VALIDATION.STUDENT_ID_MAX_LENGTH}
                         />
                         <TelInput
                             name="phone"

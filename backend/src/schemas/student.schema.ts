@@ -8,7 +8,7 @@ const StudentSchema = z.object({
   lastName: z.string().min(1, "Last name is required").max(STUDENT_VALIDATION.LAST_NAME_MAX_LENGTH, `Last name must not exceed ${STUDENT_VALIDATION.LAST_NAME_MAX_LENGTH} characters`),
   email: z.string().email("Invalid email format"),
   dateOfBirth: z.coerce.date(),
-  studentId: z.string().min(1, "Student ID is required"),
+  studentId: z.string().min(1, "Student ID is required").max(STUDENT_VALIDATION.STUDENT_ID_MAX_LENGTH, `Student ID must not exceed ${STUDENT_VALIDATION.STUDENT_ID_MAX_LENGTH} characters`),
   phone: z.string().min(10, "Phone number must be at least 10 digits"),
   address: z.object({
     street: z.string().min(1, "Street is required"),
