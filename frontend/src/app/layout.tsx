@@ -3,6 +3,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import "./globals.scss";
 import ThemeProvider from "@/components/ui/ThemeProvider/ThemeProvider";
 import { Header, Footer } from "@/components/layout";
+import VibeKanbanWrapper from "@/components/VibeKanbanWrapper";
 
 const metadata: Metadata = {
   title: "StudentHub",
@@ -24,6 +25,7 @@ const RootLayout = ({
               <main className="main-content">{children}</main>
               <Footer />
             </div>
+            <VibeKanbanWrapper />
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
