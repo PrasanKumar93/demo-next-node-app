@@ -58,7 +58,7 @@ const StudentRegistrationForm = () => {
 
                 {/* Personal Information Section */}
                 <fieldset className={styles.section}>
-                    <legend className={styles.sectionTitle}>Personal Information</legend>
+                    <legend className={styles.sectionTitle}>Student Bio</legend>
                     <div className={styles.row}>
                         <TextInput
                             name="firstName"
@@ -111,6 +111,7 @@ const StudentRegistrationForm = () => {
                             error={errors.studentId}
                             required
                             placeholder="e.g., STU-2024-001"
+                            maxLength={STUDENT_VALIDATION.STUDENT_ID_MAX_LENGTH}
                         />
                         <TelInput
                             name="phone"
